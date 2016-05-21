@@ -81,7 +81,6 @@ class C_Arbo(object) :
                         "## Liste des fichiers et dossiers à ignorer\n\n" +
                         "#.gitignore\n\n" +
                         "## [ Dossiers a ignorer ]\n" +
-                        "01_userDoc/blog/\n" +
                         "03_software/test/\n" +
                         "05_*/\n" +
                         "06_*/\n" +
@@ -95,8 +94,7 @@ class C_Arbo(object) :
                         "*.mp4\n" +
                         "Thumbs.db"
                         )
-        else :
-            v_txtData = (
+        else : v_txtData = (
                         "###\n" +
                         "#\n" +
                         "#   Autheur         : Poltergeist42\n" +
