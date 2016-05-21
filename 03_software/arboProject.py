@@ -95,8 +95,7 @@ class C_Arbo(object) :
                         "*.mp4\n" +
                         "Thumbs.db"
                         )
-        else :
-            v_txtData = (
+        else : v_txtData = (
                         "###\n" +
                         "#\n" +
                         "#   Autheur         : Poltergeist42\n" +
