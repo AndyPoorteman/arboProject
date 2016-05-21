@@ -48,7 +48,7 @@ class C_Arbo(object) :
                     "/02_modelization_v",
                     "/03_software_v/3-1_test_v",
                     "/04_PCB_v",
-                    "/05_techDoc_v",
+                    "/05_techDoc_v/5-1_liensWeb_v",
                     "/06_research_v/6-1_Etude_Documentation_v",
                     "/06_research_v/6-2_liensWeb_v",
                     "/06_research_v/6-3_logiciels_v",
