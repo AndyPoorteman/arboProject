@@ -81,7 +81,7 @@ class C_Arbo(object) :
                         "## Liste des fichiers et dossiers à ignorer\n\n" +
                         "#.gitignore\n\n" +
                         "## [ Dossiers a ignorer ]\n" +
-                        "03_software/test/\n" +
+                        "03_software/3-1_test*/\n" +
                         "05_*/\n" +
                         "06_*/\n" +
                         "07_*/\n" +
