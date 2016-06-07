@@ -1,29 +1,31 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-###(
-#   Nom du fichier  : arboProject.py
-#   Autheur         : Poltergeist42
-#   Version         : 2016.05.21
-###
+"""
+   :Nom du fichier:     arboProject.py
+   :Autheur:            `Poltergeist42 <https://github.com/poltergeist42>`_
+   :Version:            2016.06.07
 
-###
-#   Licence         : CC-BY-NC-SA
-#   Liens           : https://creativecommons.org/licenses/by-nc-sa/4.0/
-###
+----
 
-###
-#   [ lexique ]
-#
-#   v_              : variable
-#   l_              : list
-#   t_              : tuple
-#   d_              : dictionnaire
-#   f_              : fonction
-#   C_              : Class
-#   i_              : Instance
-#   m_              : Module
-###
+   :Licence:            CC-BY-NC-SA
+   :Liens:              https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+----
+
+
+lexique
+-------
+
+   :v_:                 variable
+   :l_:                 list
+   :t_:                 tuple
+   :d_:                 dictionnaire
+   :f_:                 fonction
+   :C_:                 Class
+   :i_:                 Instance
+   :m_:                 Module
+"""
 
 #################### Taille maximum des commentaires (80 caracteres)######################
 
@@ -95,14 +97,17 @@ class C_Arbo(object) :
                         "Thumbs.db"
                         )
         else : v_txtData = (
-                        "###\n" +
-                        "#\n" +
-                        "#   Autheur         : Poltergeist42\n" +
-                        "#   Project         : \n" +
-                        "#   Licence         : CC BY-NC-SA 4.0\n" +
-                        "#   Liens           : https://creativecommons.org/licenses/by-nc-sa/4.0/ \n" +
-                        "###\n\n" +
-                        "# Saisir ici une breve description du projet"
+                        "=========================\n" +
+                        "saisir le titre du projet\n" +
+                        "=========================\n\n" +
+                        "   :Autheur:          `Poltergeist42 <https://github.com/poltergeist42>`_\n" +
+                        "   :Projet:          \n" +
+                        "   :Licence:          CC BY-NC-SA 4.0\n" +
+                        "   :Liens:            https://creativecommons.org/licenses/by-nc-sa/4.0/ \n\n" +
+                        "------------------------------------------------------------------------------------------\n\n" +
+                        "Description\n" +
+                        "-----------\n\n" +
+                        " Saisir ici une breve description du projet"
                         )
                         
         # print("dbgMsg[05] : ", v_txtData)
@@ -139,7 +144,7 @@ def main() :
     i_arbo = C_Arbo()
     i_arbo.f_dir()
     i_arbo.f_wFile(".gitignore")
-    i_arbo.f_wFile("README.md")
+    i_arbo.f_wFile("README.rst")
     i_arbo.f_gitInit()
     print("\n")
     input("fin de creation de l'arboressence")
