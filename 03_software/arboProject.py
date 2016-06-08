@@ -96,7 +96,9 @@ class C_Arbo(object) :
                         "*.mp4\n" +
                         "Thumbs.db"
                         )
-        else : v_txtData = (
+                        
+        if v_fileName == "README.rst" :
+            v_txtData = (
                         "=========================\n" +
                         "saisir le titre du projet\n" +
                         "=========================\n\n" +
@@ -109,6 +111,34 @@ class C_Arbo(object) :
                         "-----------\n\n" +
                         " Saisir ici une breve description du projet"
                         )
+                        
+        if v_fileName == "VoLAB.rst" :
+            v_txtData = (
+                        ".. image:: logoVoLAB_200x200.jpg\n" +
+                        "   :align: center\n\n" +
+                        "=====\n" +
+                        "VoLAB\n" +
+                        "=====\n\n" +
+                        "Nous connaître\n" +
+                        "--------------\n\n" +
+                        "   :Le Site Web:       http://www.volab.org \n\n" +
+                        "   :Le Wiki:           http://www.vorobotics.com/wiki/index.php?title=Accueil \n\n" +
+                        "   :GitHub:            https://github.com/volab \n\n" +
+                        "   :Twitter:           https://twitter.com/vorobotics \n\n" +
+                        "   :Faceboock:         https://www.facebook.com/VoLab95/ \n\n" +
+                        "Qui sommes nous ?\n" +
+                        "-----------------\n\n" +
+                        "   Le VoLAB, premier FabLab du Val d'Oise, est un FabLab associatif portée par\n" +
+                        "   l’associassions VoRoBoTics situé à Vauréal (95480).\n\n" +
+                        "   Nous avons pour vocation le partage non marchand des connaissances\n" +
+                        "   et l'échange de compétences. Petits et gros projets se côtoient dans divers domaines comme :\n\n"
+                        "   Le travail du bois, du métal, l'électronique, la programmation, la sérigraphie,\n" +
+                        "   la couture, le scrapbooking et bien d'autres encore.\n\n" +
+                        "   Les échanges dynamiques dans la bonne humeur et le respect mutuel permettent\n" +
+                        "   à chacun d’appendre et de partager à son rythme\n\n" +
+                        "   **N'hésitez pas venir nous rendre visite.**"
+                        )
+                        
                         
         # print("dbgMsg[05] : ", v_txtData)
             
@@ -145,8 +175,10 @@ def main() :
     i_arbo.f_dir()
     i_arbo.f_wFile(".gitignore")
     i_arbo.f_wFile("README.rst")
+    i_arbo.f_wFile("VoLAB.rst")
     i_arbo.f_gitInit()
-    print("\n")
+    print("\n\n Pensez à copier l'image \"logoVoLAB_200x200.jpg\" \n a la racine de votre arborescence\n\n")
+          
     input("fin de creation de l'arboressence")
 
 if __name__ == '__main__':
