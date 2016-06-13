@@ -42,6 +42,12 @@ class C_Arbo(object) :
                             # du repertoire local
         self.v_chkTrueFalse = True
         # print("dbgMsg[02] : ", self.v_localDir)
+               
+    def f_dirInit(self) :
+        v_localWorkDir = input("Entrez le chemin absolu du dossier projet : ")
+        self.v_localDir = os.path.normpath(v_localWorkDir)
+        os.chdir(self.v_localDir)
+        print("dbgMsg[03] : ", self.v_localDir)
 
     def f_dir(self) :
         """ Creation de la liste des dossiers et de leur sous dossiers """
@@ -108,7 +114,7 @@ class C_Arbo(object) :
                         "   :Liens:            https://creativecommons.org/licenses/by-nc-sa/4.0/ \n\n" +
                         "------------------------------------------------------------------------------------------\n\n" +
                         "Description\n" +
-                        "-----------\n\n" +
+                        "===========\n\n" +
                         " Saisir ici une breve description du projet"
                         )
                         
@@ -172,6 +178,7 @@ class C_Arbo(object) :
 def main() :
     """ fonction principale """
     i_arbo = C_Arbo()
+    i_arbo.f_dirInit()
     i_arbo.f_dir()
     i_arbo.f_wFile(".gitignore")
     i_arbo.f_wFile("README.rst")
