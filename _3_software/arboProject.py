@@ -4,7 +4,7 @@
 """
    :Nom du fichier:     arboProject.py
    :Autheur:            `Poltergeist42 <https://github.com/poltergeist42>`_
-   :Version:            2016.06.07
+   :Version:            20160614
 
 ----
 
@@ -30,6 +30,7 @@ lexique
 #################### Taille maximum des commentaires (80 caracteres)######################
 
 import os
+import shutil
 
 class C_Arbo(object) :
     """ 
@@ -40,10 +41,28 @@ class C_Arbo(object) :
         self.v_localDir = os.getcwd()
                             # os.getcwd() : permet de recuperer le chemin
                             # du repertoire local
+        self.v_logoPath = os.path.normpath("C:/mntJeanCloud/Perso/LAB/Pierre/python/projet/arboProject/_7_rushes/_7-4_pictures/logoVoLAB_200x200.jpg")
         self.v_chkTrueFalse = True
         # print("dbgMsg[02] : ", self.v_localDir)
-               
+        
+        self.l_arboDir =    [
+                            "/_1_userDoc_v",
+                            "/_2_modelization_v",
+                            "/_3_software_v/_3-1_test_v",
+                            "/_4_PCB_v",
+                            "/_5_techDoc_v/_5-1_liensWeb_v",
+                            "/_6_research_v/_6-1_Etude_Documentation_v",
+                            "/_6_research_v/_6-2_liensWeb_v",
+                            "/_6_research_v/_6-3_logiciels_v",
+                            "/_7_rushes/_7-1_texts_v",
+                            "/_7_rushes/_7-2_audio_v",
+                            "/_7_rushes/_7-3_video_v",
+                            "/_7_rushes/_7-4_pictures",
+                            "/_7_rushes/_7-5_liensWeb_v"
+                            ]
+
     def f_dirInit(self) :
+        """ recuperation du repertoire de travail """
         v_localWorkDir = input("Entrez le chemin absolu du dossier projet : ")
         self.v_localDir = os.path.normpath(v_localWorkDir)
         os.chdir(self.v_localDir)
@@ -51,25 +70,9 @@ class C_Arbo(object) :
 
     def f_dir(self) :
         """ Creation de la liste des dossiers et de leur sous dossiers """
-        l_arboDir = [
-                    "/01_userDoc_v",
-                    "/02_modelization_v",
-                    "/03_software_v/3-1_test_v",
-                    "/04_PCB_v",
-                    "/05_techDoc_v/5-1_liensWeb_v",
-                    "/06_research_v/6-1_Etude_Documentation_v",
-                    "/06_research_v/6-2_liensWeb_v",
-                    "/06_research_v/6-3_logiciels_v",
-                    "/07_rushes_v/7-1_texts_v",
-                    "/07_rushes_v/7-2_audio_v",
-                    "/07_rushes_v/7-3_video_v",
-                    "/07_rushes_v/7-4_pictures",
-                    "/07_rushes_v/7-5_liensWeb_v"
-                    ]
-                    
-        for i in range(len(l_arboDir)) :
-            print(l_arboDir[i])
-            v_target = self.v_localDir + l_arboDir[i]
+        for i in range(len(self.l_arboDir)) :
+            print(self.l_arboDir[i])
+            v_target = self.v_localDir + self.l_arboDir[i]
             # print("dbgMsg[04] : ", os.path.normpath(v_target))
             os.makedirs(os.path.normpath(v_target), mode=0o777, exist_ok=True)
                             # os.makedirs() : Permet de creer le repertoire indiquer par
@@ -89,10 +92,10 @@ class C_Arbo(object) :
                         "## Liste des fichiers et dossiers à ignorer\n\n" +
                         "#.gitignore\n\n" +
                         "## [ Dossiers a ignorer ]\n" +
-                        "03_software/3-1_test*/\n" +
-                        "05_*/\n" +
-                        "06_*/\n" +
-                        "07_*/\n" +
+                        "_3_software/_3-1_test*/\n" +
+                        "_²5_*/\n" +
+                        "_6_*/\n" +
+                        "_7_*/\n" +
                         "*_v/\n\n" +
                         "## [ listes des extentions a ignorer ]\n" +
                         "*.*~\n" +
@@ -157,6 +160,13 @@ class C_Arbo(object) :
             i_fileLog.write(v_txtData)
             i_fileLog.close()
             
+    def f_copyLogo(self) :
+        """ copie du logo dans le repertoire de destination """
+        shutil.copy( self.v_logoPath, self.v_localDir, follow_symlinks=False )
+        v_logoPathTarget = self.v_localDir + self.l_arboDir[11]
+        shutil.copy( self.v_logoPath, v_logoPathTarget, follow_symlinks=False )
+    
+            
     def f_gitInit(self) :
         """ initialisation de git """
         while self.v_chkTrueFalse :
@@ -183,10 +193,10 @@ def main() :
     i_arbo.f_wFile(".gitignore")
     i_arbo.f_wFile("README.rst")
     i_arbo.f_wFile("VoLAB.rst")
+    i_arbo.f_copyLogo()
     i_arbo.f_gitInit()
-    print("\n\n Pensez à copier l'image \"logoVoLAB_200x200.jpg\" \n a la racine de votre arborescence\n\n")
           
-    input("fin de creation de l'arboressence")
+    input("\n\n\t\tfin de creation de l'arboressence")
 
 if __name__ == '__main__':
     main()
