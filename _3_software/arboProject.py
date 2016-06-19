@@ -4,7 +4,7 @@
 """
    :Nom du fichier:     arboProject.py
    :Autheur:            `Poltergeist42 <https://github.com/poltergeist42>`_
-   :Version:            20160614
+   :Version:            20160619
 
 ----
 
@@ -31,7 +31,10 @@ lexique
 
 import os
 import shutil
+<<<<<<< HEAD
 import sys
+=======
+>>>>>>> parent of 5328c76... modif mineur
 
 class C_Arbo(object) :
     """ 
