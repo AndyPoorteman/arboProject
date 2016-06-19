@@ -31,6 +31,7 @@ lexique
 
 import os
 import shutil
+import sys
 
 class C_Arbo(object) :
     """ 
@@ -183,11 +184,26 @@ class C_Arbo(object) :
                 os.system("git init")
                             # os.system() : permet d'executer une commande exterieur
                 # print("dbgMsg[07-OUI] : ", v_gitChk, " - ", self.v_chkTrueFalse)
-               
+                
+    def f_osIdentifier(self) :
+        """ Permet d'identifier le type de systeme d'exploitation """
+        v_osType = sys.platform
+        print( "v_osType = ", v_osType)
+        
+        if v_osType == 'linux' :
+            v_clear = "clear"
+            self.v_logoPath = os.path.normpath("/media/polter/JEANCLOUD/Perso/LAB/Pierre/python/projet/arboProject/_7_rushes/_7-4_pictures/logoVoLAB_200x200.jpg")
+        elif  v_osType == "win32" :
+            v_clear = "cls"
+            self.v_logoPath = os.path.normpath("C:/mntJeanCloud/Perso/LAB/Pierre/python/projet/arboProject/_7_rushes/_7-4_pictures/logoVoLAB_200x200.jpg")
+            
+        os.system(v_clear)
+        print( "v_osType = ", v_osType)
 
 def main() :
     """ fonction principale """
     i_arbo = C_Arbo()
+    i_arbo.f_osIdentifier()
     i_arbo.f_dirInit()
     i_arbo.f_dir()
     i_arbo.f_wFile(".gitignore")
