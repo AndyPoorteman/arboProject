@@ -4,7 +4,7 @@
 """
    :Nom du fichier:     arboProject.py
    :Autheur:            `Poltergeist42 <https://github.com/poltergeist42>`_
-   :Version:            20160619
+   :Version:            20161207
 
 ----
 
@@ -31,10 +31,7 @@ lexique
 
 import os
 import shutil
-<<<<<<< HEAD
 import sys
-=======
->>>>>>> parent of 5328c76... modif mineur
 
 class C_Arbo(object) :
     """ 
@@ -53,6 +50,7 @@ class C_Arbo(object) :
                             "/_1_userDoc_v",
                             "/_2_modelization_v",
                             "/_3_software_v/_3-1_test_v",
+                            "/_3_software_v/oldLibVers",
                             "/_4_PCB_v",
                             "/_5_techDoc_v/_5-1_liensWeb_v",
                             "/_6_research_v/_6-1_Etude_Documentation_v",
@@ -89,7 +87,7 @@ class C_Arbo(object) :
                             # par '\'
 
     def f_wFile(self, v_fileName) :
-        """ Creation des fichiers textes '.gitignore' et README.md' """
+        """ Creation des fichiers textes '.gitignore', 'README.rst' et 'VoLAB.rst' """
         if v_fileName == ".gitignore" :
             v_txtData = (
                         "## [ .gitignore ]\n\n" +
@@ -97,7 +95,8 @@ class C_Arbo(object) :
                         "#.gitignore\n\n" +
                         "## [ Dossiers a ignorer ]\n" +
                         "_3_software/_3-1_test*/\n" +
-                        "_²5_*/\n" +
+                        "_3_software/oldLibVers*/\n" +
+                        "_5_*/\n" +
                         "_6_*/\n" +
                         "_7_*/\n" +
                         "*_v/\n\n" +
