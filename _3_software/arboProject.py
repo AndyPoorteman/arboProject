@@ -4,7 +4,7 @@
 """
    :Nom du fichier:     arboProject.py
    :Autheur:            `Poltergeist42 <https://github.com/poltergeist42>`_
-   :Version:            20161207
+   :Version:            20170330
 
 ----
 
@@ -27,7 +27,8 @@ lexique
    :m_:                 Module
 """
 
-#################### Taille maximum des commentaires (80 caracteres)######################
+#################### Taille maximum des commentaires (90 caracteres)######################
+
 
 import os
 import shutil
@@ -101,12 +102,42 @@ class C_Arbo(object) :
                         "_7_*/\n" +
                         "*_v/\n\n" +
                         "## [ listes des extentions a ignorer ]\n" +
-                        "*.*~\n" +
                         "*.FCStd1\n" +
                         "*.264\n" +
                         "*.mkv\n" +
                         "*.mp4\n" +
-                        "Thumbs.db"
+                        "*.json\n\n" +
+                        "## Compiled source\n" +
+                        "*.com\n" +
+                        "*.class\n" +
+                        "*.dll\n" +
+                        "*.exe\n" +
+                        "*.o\n" +
+                        "*.so\n" +
+                        "*.pyc\n\n" +
+                        "## Packages\n" +
+                        "*.7z\n" +
+                        "*.dmg\n" +
+                        "*.gz\n" +
+                        "*.iso\n" +
+                        "*.jar\n" +
+                        "*.rar\n" +
+                        "*.tar\n" +
+                        "*.zip\n\n" +
+                        "## Logs and databases\n" +
+                        "*.log\n" +
+                        "*.sql\n" +
+                        "*.sqlite\n\n" +
+                        "## OS generated files\n" +
+                        ".DS_Store?\n" +
+                        "ehthumbs.db\n" +
+                        "Icon?\n" +
+                        "Thumbs.db\n" +
+                        "*.swp\n" +
+                        ".*.swp\n" +
+                        "*~\n" +
+                        "*.lock\n" +
+                        "*.out\n"
                         )
                         
         if v_fileName == "README.rst" :
