@@ -47,10 +47,11 @@ class C_Arbo(object) :
         self.v_chkTrueFalse = True
         # print("dbgMsg[02] : ", self.v_localDir)
         
-        t_lstTxtFile   = (".gitignore", "README.rst", "VoLAB.rst")
+        self.t_lstTxtFile   = (".gitignore", "README.rst", "VoLAB.rst", "__init__.py")
         
         self.l_arboDir =    [
                             "/webDoc",
+                            "/project",
                             "/project/_1_userDoc_v",
                             "/project/_2_modelization_v",
                             "/project/_3_software_v/_3-1_test_v",
@@ -92,7 +93,7 @@ class C_Arbo(object) :
 
     def f_wFile(self, v_except=None) :
         """ Creation des fichiers textes '.gitignore', 'README.rst' et 'VoLAB.rst' """
-        for v_fileName in t_lstTxtFile :
+        for v_fileName in self.t_lstTxtFile :
             if v_fileName != v_except :          
                 if v_fileName == ".gitignore" :
                     v_txtData = (
@@ -186,16 +187,22 @@ class C_Arbo(object) :
                                 "   à chacun d’appendre et de partager à son rythme\n\n" +
                                 "   **N'hésitez pas venir nous rendre visite.**"
                                 )
+                                
+                if v_fileName == "__init__.py" :
+                    v_fileName = "_3_software/{}".format(v_fileName)
+                    v_txtData = False
 
                 # print("dbgMsg[05] : ", v_txtData)
                 v_fileName = "./project/{}".format( v_fileName )
                 try :
                     i_fileLog = open(v_fileName, 'a')
-                    i_fileLog.write(v_txtData)
+                    if v_txtData :
+                        i_fileLog.write(v_txtData)
                     i_fileLog.close()
                 except :
                     i_fileLog = open(v_fileName, 'w')
-                    i_fileLog.write(v_txtData)
+                    if v_txtData :
+                        i_fileLog.write(v_txtData)
                     i_fileLog.close()
                     
             else : pass
@@ -203,8 +210,9 @@ class C_Arbo(object) :
             
     def f_copyLogo(self) :
         """ copie du logo dans le repertoire de destination """
-        shutil.copy( self.v_logoPath, self.v_localDir, follow_symlinks=False )
-        v_logoPathTarget = self.v_localDir + self.l_arboDir[11]
+        v_target = self.v_localDir + self.l_arboDir[1]
+        shutil.copy( self.v_logoPath, v_target, follow_symlinks=False )
+        v_logoPathTarget = self.v_localDir + self.l_arboDir[14]
         shutil.copy( self.v_logoPath, v_logoPathTarget, follow_symlinks=False )
     
             
@@ -221,6 +229,7 @@ class C_Arbo(object) :
                 
             if (v_gitChk == 'O') or (v_gitChk == "OUI") :
                 self.v_chkTrueFalse = False
+                os.chdir(self.v_localDir+self.l_arboDir[1])
                 os.system("git init")
                             # os.system() : permet d'executer une commande exterieur
                 # print("dbgMsg[07-OUI] : ", v_gitChk, " - ", self.v_chkTrueFalse)
