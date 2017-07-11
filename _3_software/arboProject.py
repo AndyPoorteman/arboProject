@@ -94,6 +94,7 @@ class C_Arbo(object) :
     def f_wFile(self, v_except=None) :
         """ Creation des fichiers textes '.gitignore', 'README.rst' et 'VoLAB.rst' """
         for v_fileName in self.t_lstTxtFile :
+            print( "dbg : ", v_fileName)
             if v_fileName != v_except :          
                 if v_fileName == ".gitignore" :
                     v_txtData = (
@@ -189,7 +190,7 @@ class C_Arbo(object) :
                                 )
                                 
                 if v_fileName == "__init__.py" :
-                    v_fileName = "_3_software/{}".format(v_fileName)
+                    v_fileName = "_3_software_v/{}".format(v_fileName)
                     v_txtData = False
 
                 # print("dbgMsg[05] : ", v_txtData)
