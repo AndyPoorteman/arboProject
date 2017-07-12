@@ -4,7 +4,7 @@
 """
    :Nom du fichier:     arboProject.py
    :Autheur:            `Poltergeist42 <https://github.com/poltergeist42>`_
-   :Version:            20170701
+   :Version:            20170711
 
 ----
 
@@ -12,7 +12,6 @@
    :Liens:              https://creativecommons.org/licenses/by-nc-sa/4.0/
 
 ----
-
 
 lexique
 -------
@@ -28,7 +27,6 @@ lexique
 """
 
 #################### Taille maximum des commentaires (90 caracteres)######################
-
 
 import os
 import shutil
@@ -47,7 +45,13 @@ class C_Arbo(object) :
         self.v_chkTrueFalse = True
         # print("dbgMsg[02] : ", self.v_localDir)
         
-        self.t_lstTxtFile   = (".gitignore", "README.rst", "VoLAB.rst", "__init__.py")
+        self._v_projectName  = ""
+        
+        self.t_lstTxtFile   = ( ".gitignore",
+                                "README.rst",
+                                "VoLAB.rst",
+                                "__init__.py",
+                                "Bug_TODOList.rst")
         
         self.l_arboDir =    [
                             "/webDoc",
@@ -68,33 +72,59 @@ class C_Arbo(object) :
                             "/project/_7_rushes/_7-5_liensWeb_v"
                             ]
 
-    def f_dirInit(self) :
+####
+
+    def f_setProjectName( self, v_projectName=None ) :
+        """ Permet de définir le nom du projet """
+        if __name__ == '__main__':
+            v_projectName = input( "entrez le nom du projet : " )
+            
+        if v_projectName :
+            self._v_projectName = v_projectName
+
+####
+
+    def f_getProjectName( self ) :
+        """ Permet de récupérer le nom du projet contenu dans '_v_projectName' """
+        return self._v_projectName
+            
+####
+                            
+    def f_dirInit(self, v_localWorkDir='.') :
         """ recuperation du repertoire de travail """
-        v_localWorkDir = input("Entrez le chemin absolu du dossier projet : ")
+        if __name__ == '__main__':
+            v_localWorkDir = input("Entrez le chemin absolu du dossier projet : ")
         self.v_localDir = os.path.normpath(v_localWorkDir)
         os.chdir(self.v_localDir)
-        print("dbgMsg[03] : ", self.v_localDir)
+        # print("dbgMsg[03] : ", self.v_localDir)
 
+####
+        
     def f_dir(self) :
         """ Creation de la liste des dossiers et de leur sous dossiers """
-        for i in range(len(self.l_arboDir)) :
-            print(self.l_arboDir[i])
-            v_target = self.v_localDir + self.l_arboDir[i]
-            # print("dbgMsg[04] : ", os.path.normpath(v_target))
-            os.makedirs(os.path.normpath(v_target), mode=0o777, exist_ok=True)
-                            # os.makedirs() : Permet de creer le repertoire indiquer par
-                            # la variable v_target. Si les repertoires parents n'existent
-                            # pas, os.makedirs les creera automatiquement
-                            #
-                            # os.path.normpath() permet de normaliser la syntaxe du
-                            # chemin indiquer par v_target.
-                            # N.B : pour windows, les "\\" et '/' seront remplacer
-                            # par '\'
 
+        for i in self.l_arboDir :
+            if __name__ == '__main__':
+                print( "Création du dossier : {}".format(i))
+                
+            v_target = self.v_localDir + i
+            os.makedirs(os.path.normpath(v_target), mode=0o777, exist_ok=True)
+                # os.makedirs() : Permet de creer le repertoire indiquer par
+                # la variable v_target. Si les repertoires parents n'existent
+                # pas, os.makedirs les creera automatiquement
+                #
+                # os.path.normpath() permet de normaliser la syntaxe du
+                # chemin indiquer par v_target.
+                # N.B : pour windows, les "\\" et '/' seront remplacer
+                # par '\'
+
+####
+    
     def f_wFile(self, v_except=None) :
         """ Creation des fichiers textes '.gitignore', 'README.rst' et 'VoLAB.rst' """
+        v_projectName = self.f_getProjectName()
+        
         for v_fileName in self.t_lstTxtFile :
-            print( "dbg : ", v_fileName)
             if v_fileName != v_except :          
                 if v_fileName == ".gitignore" :
                     v_txtData = (
@@ -149,17 +179,43 @@ class C_Arbo(object) :
                                 
                 if v_fileName == "README.rst" :
                     v_txtData = (
-                                "=========================\n" +
-                                "saisir le titre du projet\n" +
-                                "=========================\n\n" +
-                                "   :Autheur:          `Poltergeist42 <https://github.com/poltergeist42>`_\n" +
-                                "   :Projet:          \n" +
-                                "   :Licence:          CC BY-NC-SA 4.0\n" +
-                                "   :Liens:            https://creativecommons.org/licenses/by-nc-sa/4.0/ \n\n" +
-                                "------------------------------------------------------------------------------------------\n\n" +
-                                "Description\n" +
-                                "===========\n\n" +
-                                " Saisir ici une breve description du projet"
+                                "======================={}\n".format("="*len(v_projectName))+
+                                "Informations générales {}\n".format(v_projectName)+
+                                "======================={}\n".format("="*len(v_projectName))+
+                                ":Autheur:            `Poltergeist42 <https://github.com/poltergeist42>`_\n"+
+                                ":Projet:             {}\n".format(v_projectName)+
+                                ":dépôt GitHub:       \n"+
+                                ":documentation:      \n"+
+                                ":Licence:            CC BY-NC-SA 4.0\n"+
+                                ":Liens:              https://creativecommons.org/licenses/by-nc-sa/4.0/\n\n"+
+                                "Description\n"+
+                                "===========\n\n"+
+                                " Saisir ici une brève déscription du projet\n\n"+
+                                "Arborescence du projet\n"+
+                                "======================\n\n"+
+                                "Pour aider à la compréhension de mon organisation,"+
+                                " voici un bref déscrptif de l'arborescence de se projet."+
+                                "Cette arborescence est à reproduire si vous récupérez ce"+
+                                " dépôt depuis GitHub. ::\n\n"+
+                                "openFile                # Dossier racine du projet (non versionner)\n"+
+                                "|\n"+
+                                "+--project              # (branch master) contient l'ensemble du projet en lui même\n"+
+                                "|  |\n"+
+                                "|  +--_1_userDoc       # Contien toute la documentation relative au projet\n"+
+                                "|  |   |\n"+
+                                "|  |   \\--source       # Dossier réunissant les sources utilisées par Sphinx\n"+
+                                "|  |\n"+
+                                "|  \\--_2_modelisation  # contien tous les plans et toutes les modélisations du projet\n"+
+                                "|  |\n"+
+                                "|  \\--_3_software      # Contien toute la partie programmation du projet\n"+
+                                "|  |\n"+
+                                "|  \\--_4_PCB           # Contient toutes les partie des ciercuit imprimés (routage, implantation, typon, fichier\n"+
+                                "|                      #de perçage, etc\n"+
+                                "|\n"+
+                                "\\--webDoc               # Dossier racine de la documentation qui doit être publiée\n"+
+                                "|\n"+
+                                "\\--html             # (branch gh-pages) C'est dans se dosier que Sphinx vat\n"+
+                                "                    # générer la documentation à publié sur internet\n\n"
                                 )
                                 
                 if v_fileName == "VoLAB.rst" :
@@ -193,21 +249,45 @@ class C_Arbo(object) :
                     v_fileName = "_3_software_v/{}".format(v_fileName)
                     v_txtData = False
 
-                # print("dbgMsg[05] : ", v_txtData)
+                if v_fileName == "Bug_TODOList.rst" :
+                    v_fileName = "_1_userDoc_v/{}".format(v_fileName)
+                    v_txtData = (
+                                    "{}\n".format( '='*16 ) +
+                                    "Bug et ToDo-list\n" +
+                                    "{}\n\n".format( '='*16 ) +
+                                    "Model Type\n" +
+                                    "{}\n\n".format( '='*10 ) +
+                                    "   :Date de saisie:        \n" +
+                                    "   :Date de traitemant:    \n" +
+                                    "   :Status:                [NONE, WIP, DONE]\n" +
+                                    "   :Problematique:         \n\n" +
+                                    "{}\n\n".format( '-'*90 ) +
+                                    "Bug identifies\n" +
+                                    "{}\n\n".format( '='*14 ) +
+                                    "   :Date de saisie:        \n" +
+                                    ":Date de traitemant:    \n" +
+                                    ":Status:                \n" +
+                                    ":Problematique:         \n\n" +
+                                    "{}\n\n".format( '-'*90 ) +
+                                    "ToDo-list\n" +
+                                    "{}\n\n".format( '='*9) +
+                                    ":Date de saisie:        \n" +
+                                    ":Date de traitemant:    \n" +
+                                    ":Status:                \n" +
+                                    ":Problematique:         \n\n"
+                                )
+                    
                 v_fileName = "./project/{}".format( v_fileName )
-                try :
-                    i_fileLog = open(v_fileName, 'a')
+                with open( v_fileName, 'w' ) as i_fileLog :
+                    if __name__ == '__main__':
+                        print( "Création du fichier : {}".format( v_fileName))
                     if v_txtData :
                         i_fileLog.write(v_txtData)
-                    i_fileLog.close()
-                except :
-                    i_fileLog = open(v_fileName, 'w')
-                    if v_txtData :
-                        i_fileLog.write(v_txtData)
-                    i_fileLog.close()
+                    
                     
             else : pass
-            
+    
+####    
             
     def f_copyLogo(self) :
         """ copie du logo dans le repertoire de destination """
@@ -216,6 +296,7 @@ class C_Arbo(object) :
         v_logoPathTarget = self.v_localDir + self.l_arboDir[14]
         shutil.copy( self.v_logoPath, v_logoPathTarget, follow_symlinks=False )
     
+####
             
     def f_gitInit(self) :
         """ initialisation de git """
@@ -234,7 +315,9 @@ class C_Arbo(object) :
                 os.system("git init")
                             # os.system() : permet d'executer une commande exterieur
                 # print("dbgMsg[07-OUI] : ", v_gitChk, " - ", self.v_chkTrueFalse)
-                
+    
+####
+    
     def f_osIdentifier(self) :
         """ Permet d'identifier le type de systeme d'exploitation """
         v_osType = sys.platform
@@ -250,15 +333,16 @@ class C_Arbo(object) :
         os.system(v_clear)
         print( "v_osType = ", v_osType)
 
+####
+        
 def main() :
     """ fonction principale """
     i_arbo = C_Arbo()
     i_arbo.f_osIdentifier()
+    i_arbo.f_setProjectName()
     i_arbo.f_dirInit()
     i_arbo.f_dir()
-    i_arbo.f_wFile(".gitignore")
-    i_arbo.f_wFile("README.rst")
-    i_arbo.f_wFile("VoLAB.rst")
+    i_arbo.f_wFile()
     i_arbo.f_copyLogo()
     i_arbo.f_gitInit()
           
