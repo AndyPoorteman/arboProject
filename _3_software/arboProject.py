@@ -4,7 +4,7 @@
 """
    :Nom du fichier:     arboProject.py
    :Autheur:            `Poltergeist42 <https://github.com/poltergeist42>`_
-   :Version:            20170711
+   :Version:            20170712
 
 ----
 
@@ -31,6 +31,7 @@ lexique
 import os
 import shutil
 import sys
+import argparse
 
 class C_Arbo(object) :
     """ 
@@ -38,20 +39,17 @@ class C_Arbo(object) :
     pour chaque nouveau projet
     """
     def __init__(self) :
-        self.v_localDir = os.getcwd()
-                            # os.getcwd() : permet de recuperer le chemin
-                            # du repertoire local
-        self.v_logoPath = os.path.normpath("C:/mntJeanCloud/Perso/LAB/Pierre/python/projet/arboProject/_7_rushes/_7-4_pictures/logoVoLAB_200x200.jpg")
-        self.v_chkTrueFalse = True
-        # print("dbgMsg[02] : ", self.v_localDir)
+        self.v_localDir     = os.getcwd()
+                                # os.getcwd() : permet de recuperer le chemin
+                                # du repertoire local
+        self.v_logoPath     = os.path.normpath("C:/mntJeanCloud/Perso/LAB/Pierre/python/projet/arboProject/_7_rushes/_7-4_pictures/logoVoLAB_200x200.jpg")
+        
+        self._v_gitInit     = False
+        self._v_sphinxInit  = False
         
         self._v_projectName  = ""
         
-        self.t_lstTxtFile   = ( ".gitignore",
-                                "README.rst",
-                                "VoLAB.rst",
-                                "__init__.py",
-                                "Bug_TODOList.rst")
+        self.t_lstTxtFile   = (".gitignore", "README.rst", "VoLAB.rst", "__init__.py")
         
         self.l_arboDir =    [
                             "/webDoc",
@@ -90,33 +88,30 @@ class C_Arbo(object) :
             
 ####
                             
-    def f_dirInit(self, v_localWorkDir='.') :
+    def f_dirInit(self) :
         """ recuperation du repertoire de travail """
-        if __name__ == '__main__':
-            v_localWorkDir = input("Entrez le chemin absolu du dossier projet : ")
+        v_localWorkDir = input("Entrez le chemin absolu du dossier projet : ")
         self.v_localDir = os.path.normpath(v_localWorkDir)
         os.chdir(self.v_localDir)
-        # print("dbgMsg[03] : ", self.v_localDir)
+        print("dbgMsg[03] : ", self.v_localDir)
 
 ####
         
     def f_dir(self) :
         """ Creation de la liste des dossiers et de leur sous dossiers """
-
-        for i in self.l_arboDir :
-            if __name__ == '__main__':
-                print( "Création du dossier : {}".format(i))
-                
-            v_target = self.v_localDir + i
+        for i in range(len(self.l_arboDir)) :
+            print(self.l_arboDir[i])
+            v_target = self.v_localDir + self.l_arboDir[i]
+            # print("dbgMsg[04] : ", os.path.normpath(v_target))
             os.makedirs(os.path.normpath(v_target), mode=0o777, exist_ok=True)
-                # os.makedirs() : Permet de creer le repertoire indiquer par
-                # la variable v_target. Si les repertoires parents n'existent
-                # pas, os.makedirs les creera automatiquement
-                #
-                # os.path.normpath() permet de normaliser la syntaxe du
-                # chemin indiquer par v_target.
-                # N.B : pour windows, les "\\" et '/' seront remplacer
-                # par '\'
+                            # os.makedirs() : Permet de creer le repertoire indiquer par
+                            # la variable v_target. Si les repertoires parents n'existent
+                            # pas, os.makedirs les creera automatiquement
+                            #
+                            # os.path.normpath() permet de normaliser la syntaxe du
+                            # chemin indiquer par v_target.
+                            # N.B : pour windows, les "\\" et '/' seront remplacer
+                            # par '\'
 
 ####
     
@@ -125,6 +120,7 @@ class C_Arbo(object) :
         v_projectName = self.f_getProjectName()
         
         for v_fileName in self.t_lstTxtFile :
+            print( "dbg : ", v_fileName)
             if v_fileName != v_except :          
                 if v_fileName == ".gitignore" :
                     v_txtData = (
@@ -248,41 +244,28 @@ class C_Arbo(object) :
                 if v_fileName == "__init__.py" :
                     v_fileName = "_3_software_v/{}".format(v_fileName)
                     v_txtData = False
-
-                if v_fileName == "Bug_TODOList.rst" :
-                    v_fileName = "_1_userDoc_v/{}".format(v_fileName)
-                    v_txtData = (
-                                    "{}\n".format( '='*16 ) +
-                                    "Bug et ToDo-list\n" +
-                                    "{}\n\n".format( '='*16 ) +
-                                    "Model Type\n" +
-                                    "{}\n\n".format( '='*10 ) +
-                                    "   :Date de saisie:        \n" +
-                                    "   :Date de traitemant:    \n" +
-                                    "   :Status:                [NONE, WIP, DONE]\n" +
-                                    "   :Problematique:         \n\n" +
-                                    "{}\n\n".format( '-'*90 ) +
-                                    "Bug identifies\n" +
-                                    "{}\n\n".format( '='*14 ) +
-                                    "   :Date de saisie:        \n" +
-                                    ":Date de traitemant:    \n" +
-                                    ":Status:                \n" +
-                                    ":Problematique:         \n\n" +
-                                    "{}\n\n".format( '-'*90 ) +
-                                    "ToDo-list\n" +
-                                    "{}\n\n".format( '='*9) +
-                                    ":Date de saisie:        \n" +
-                                    ":Date de traitemant:    \n" +
-                                    ":Status:                \n" +
-                                    ":Problematique:         \n\n"
-                                )
                     
+                if v_fileName == "make.bat" :
+                    if not self._v_sphinxInit :
+                        pass
+                    else :
+                        v_fileName = "{}/{}".format(v_fileName)
+                        
+
                 v_fileName = "./project/{}".format( v_fileName )
-                with open( v_fileName, 'w' ) as i_fileLog :
-                    if __name__ == '__main__':
-                        print( "Création du fichier : {}".format( v_fileName))
+                try :
+                    i_fileLog = open(v_fileName, 'a')
                     if v_txtData :
                         i_fileLog.write(v_txtData)
+                    # i_fileLog.close()
+                except :
+                    i_fileLog = open(v_fileName, 'w')
+                    if v_txtData :
+                        i_fileLog.write(v_txtData)
+                    
+                finally :
+                    i_fileLog.close()
+                    pass
                     
                     
             else : pass
@@ -300,21 +283,37 @@ class C_Arbo(object) :
             
     def f_gitInit(self) :
         """ initialisation de git """
-        while self.v_chkTrueFalse :
-            print("\n\t\tVoulez-vous initialiser git pour ce projet ?\n")
-            v_gitChk = input("\t\tOui (O) / Non (N) : ").upper()
-            # print("dbgMsg[06] : ", v_gitChk)
-            
-            if (v_gitChk == 'N') or (v_gitChk == "NON") :
-                self.v_chkTrueFalse = False
-                # print("dbgMsg[07-NON] : ", v_gitChk, " - ", self.v_chkTrueFalse)
+        if self._v_gitInit :
+            os.chdir(self.v_localDir+self.l_arboDir[1])
+            os.system("git init")
+            # os.system() : permet d'executer une commande exterieur
                 
-            if (v_gitChk == 'O') or (v_gitChk == "OUI") :
-                self.v_chkTrueFalse = False
-                os.chdir(self.v_localDir+self.l_arboDir[1])
-                os.system("git init")
-                            # os.system() : permet d'executer une commande exterieur
-                # print("dbgMsg[07-OUI] : ", v_gitChk, " - ", self.v_chkTrueFalse)
+####
+                
+    def f_sphinxInit( self ) :
+        """ Initialisation de Sphinx """
+        if self._v_gitInit :
+            os.chdir(self.v_localDir+self.l_arboDir[2])
+            os.system( "sphinx-quickstart -q -p {} -a Poltergeist42 "\
+                        "--sep -l fr --ext-autodoc --ext-githubpages "\
+                        "--no-makefile --no-batchfile".format( self.f_getProjectName() )
+                        )
+    
+####
+
+    def f_setSphinx( self ) :
+        """ Permet de définir '_v_sphinxInit' à Vrai ou Faux.
+            L'état est inversé à chaque appel
+        """
+        self._v_sphinxInit =  not self._v_sphinxInit
+    
+####
+
+    def f_setGit( self ) :
+        """ Permet de définir '_v_gitInit' à Vrai ou Faux.
+            L'état est inversé à chaque appel
+        """
+        self._v_gitInit =  not self._v_gitInit
     
 ####
     
@@ -325,10 +324,16 @@ class C_Arbo(object) :
         
         if v_osType == 'linux' :
             v_clear = "clear"
-            self.v_logoPath = os.path.normpath("/media/polter/JEANCLOUD/Perso/LAB/Pierre/python/projet/arboProject/_7_rushes/_7-4_pictures/logoVoLAB_200x200.jpg")
+            self.v_logoPath = os.path.normpath(
+                "/media/polter/JEANCLOUD/Perso/LAB/Pierre/"\
+                "python/projet/arboProject/_7_rushes/_7-4_pictures/"\
+                "logoVoLAB_200x200.jpg")
         elif  v_osType == "win32" :
             v_clear = "cls"
-            self.v_logoPath = os.path.normpath("C:/mntJeanCloud/Perso/LAB/Pierre/python/projet/arboProject/_7_rushes/_7-4_pictures/logoVoLAB_200x200.jpg")
+            self.v_logoPath = os.path.normpath(
+                "C:/mntJeanCloud/Perso/LAB/Pierre/"\
+                "python/projet/arboProject/_7_rushes/_7-4_pictures/"\
+                "logoVoLAB_200x200.jpg")
             
         os.system(v_clear)
         print( "v_osType = ", v_osType)
@@ -337,13 +342,27 @@ class C_Arbo(object) :
         
 def main() :
     """ fonction principale """
+    parser = argparse.ArgumentParser()
+    parser.add_argument( "-s", "--sphinx", action='store_true', help="Initialisation de Sphinx")
+    parser.add_argument( "-g", "--git", action='store_true', help="Initialisation de Git")
+                        
+    args = parser.parse_args()
+    
     i_arbo = C_Arbo()
     i_arbo.f_osIdentifier()
     i_arbo.f_setProjectName()
+    
+    
+    
+    if args.sphinx : i_arbo.f_setSphinx()
+    if args.git : i_arbo.f_setGit()
+        
+            
     i_arbo.f_dirInit()
     i_arbo.f_dir()
     i_arbo.f_wFile()
     i_arbo.f_copyLogo()
+    i_arbo.f_sphinxInit()
     i_arbo.f_gitInit()
           
     input("\n\n\t\tfin de creation de l'arboressence")
