@@ -9,10 +9,9 @@ ArboProject
 
 ------------------------------------------------------------------------------------------
 
-Description
+Déscription
 -----------
 
-    Ce projet permet de créer une arboressence de dossier et de sous dossier necessaire
-à chaque nouveau projet.
-
-Les fichiers ".gitignore" et "README.rst" sont également créer et pré-remplie.
+    Ce projet permet de créer une arboressence de dossier et de sous dossier nécessaires à
+    chaque nouveau projet. Ainsi que l'ensemble des fichiers qui y son ratachés. Il permet
+    également d'initialiser le dépôt Git et l'outil de documentation Sphinx.
