@@ -9,7 +9,7 @@ Infos
    :Projet:             arboProject
    :Nom du fichier:     createFile.py
    :Autheur:            `Poltergeist42 <https://github.com/poltergeist42>`_
-   :Version:            20170713
+   :Version:            20170721
 
 ####
 
@@ -300,7 +300,7 @@ def f_createMakeBat(*args) :
         "    exit /b 1\n"\
         ")\n\n"\
         "%SPHINXBUILD% -M %1 %SOURCEDIR% %BUILDDIR% %SPHINXOPTS%\n"\
-        "reconstruction de la branch \"gh-pages\" et mise a jour du depot distant\n"\
+        "rem reconstruction de la branch \"gh-pages\" et mise a jour du depot distant\n"\
         "cd %BUILDDIR%\\html\n"\
         "git add .\n"\
         "git commit -m \"rebuilt docs\"\n"\
