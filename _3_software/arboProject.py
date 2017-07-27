@@ -9,7 +9,7 @@ Infos
    :Projet:             arboProject
    :Nom du fichier:     arboProject.py
    :Autheur:            `Poltergeist42 <https://github.com/poltergeist42>`_
-   :Version:            20170721
+   :Version:            20170726
 
 ####
 
@@ -74,7 +74,7 @@ import createFile as cf
 
 class C_Arbo(object) :
     """ 
-    Class permettan la Creation d'une arboressence standardise
+    Class permettan la Creation d'une arboressence standardisée
     pour chaque nouveau projet
     """
     def __init__(self) :
@@ -262,12 +262,12 @@ class C_Arbo(object) :
                             
 ####
     
-    def f_loopFile(self, *t_exeptArgs) :
+    def f_loopFile(self, *args, **kwargs) :
         """ Permet de parcourrir '_d_lstTxtFile' pour créer les fichiers textes associers
             à chaque item du tuple
         """
         v_projectName   = self.f_getProjectName()
-        
+        t_exeptArgs     = args
         for k in self._d_lstTxtFile.keys() :
             
             if (k not in t_exeptArgs) or (k not in t_exeptArgs[0]) :
@@ -291,6 +291,21 @@ class C_Arbo(object) :
                 i_fileLog.write(v_txtData)
     
 ####    
+
+    def f_copyFile(self) :
+        """ Permet de copier tous les fichiers qui se trouvent dans le dossier
+            '_3-2_sources' vers leur déstination dans la nouvelle arborescence
+        """
+        
+        for _, _, l_file in os.walk( self.v_sourceDir ) :
+            for i in l_file :
+                if i[-4] == '.' :
+                    print( i[:-4] )
+                else :
+                    if i[0] == '.' :
+                        print( i[1:] )
+        
+####
             
     def f_copyLogo(self) :
         """ copie du logo dans le repertoire de destination """
@@ -407,6 +422,16 @@ class C_Arbo(object) :
         print( "v_osType = ", v_osType)
 
 ####
+
+    def f_testFunc(self, *args, **kwargs ) :
+            print( "\n\t\t ## f_testFunc ##\n" )
+            print("args\t: ",args)
+            print("kwargs\t: ", kwargs)
+            for i in args :
+                print( "i\t: ", i )
+                v_exec = "self.{}".format(i)
+                print( "v_exec\t: ", v_exec )
+                eval( v_exec )()
         
 def main() :
     """ fonction principale """
@@ -414,7 +439,9 @@ def main() :
     parser.add_argument( "-s", "--sphinx", action='store_true', help="Initialisation de Sphinx")
     parser.add_argument( "-g", "--git", action='store_true', help="Initialisation de Git")
     parser.add_argument( "-v", "--verbose", action='store_true', help="permet l'affichage du déroulement des opérations")
-                        
+    parser.add_argument( "-a", "--all", action='store_true', help="active toutes les options d'arboProject")
+    parser.add_argument( "-t", "--test", action='store_true', help="permet de tester une methode")
+    
     args = parser.parse_args()
     
     # Création d'un tuple contenant l'ensemble des exeptions de dossier
@@ -425,10 +452,10 @@ def main() :
     
     i_arbo = C_Arbo()
     
-    if args.verbose : i_arbo.f_setVerbose()
-    if args.sphinx : i_arbo.f_setSphinx()
-    if args.git : i_arbo.f_setGit()
-
+    if args.verbose or args.all : i_arbo.f_setVerbose()
+    if args.sphinx or args.all : i_arbo.f_setSphinx()
+    if args.git or args.all : i_arbo.f_setGit()
+    
     # i_arbo.f_osIdentifier()
     i_arbo.f_setProjectName()
     i_arbo.f_dirInit()
@@ -439,7 +466,10 @@ def main() :
     i_arbo.f_setChangeConf()
     i_arbo.f_copyLogo()
     i_arbo.f_gitInit()
-          
+    
+    if args.test :
+        i_arbo.f_testFunc("f_copyFile" )
+        
     input("\n\n\t\tfin de creation de l'arboressence")
 
 if __name__ == '__main__':
