@@ -9,7 +9,7 @@ Infos
    :Projet:             arboProject
    :Nom du fichier:     arboProject.py
    :Autheur:            `Poltergeist42 <https://github.com/poltergeist42>`_
-   :Version:            20170726
+   :Version:            20170728
 
 ####
 
@@ -69,6 +69,7 @@ import os
 import shutil
 import sys
 import argparse
+import json
 
 import createFile as cf
 
@@ -82,7 +83,7 @@ class C_Arbo(object) :
                                 # os.getcwd() : permet de recuperer le chemin
                                 # du repertoire local
         self.v_sourceDir    = os.path.normpath(
-            "{}/_3-2_sources".format( self.v_localDir ))
+            "{}/_3-2_sourcesFileToCopy".format( self.v_localDir ))
             
         self._v_logoSourceFQFN     = os.path.normpath(
             "{}/logoVoLAB_200x200.jpg".format(self.v_sourceDir))
@@ -95,54 +96,54 @@ class C_Arbo(object) :
         self._v_author      = "Poltergeist42"
         
         self._d_arboDir     =   {
-                                0:"/webDoc",
-                                1:"/project",
-                                2:"/project/_1_userDoc_v",
-                                3:"/project/_2_modelization_v",
-                                4:"/project/_3_software_v/_3-1_test_v",
-                                5:"/project/_3_software_v/oldLibVers",
-                                6:"/project/_4_PCB_v",
-                                7:"/project/_5_techDoc_v/_5-1_liensWeb_v",
-                                8:"/project/_6_research_v/_6-1_Etude_Documentation_v",
-                                9:"/project/_6_research_v/_6-2_liensWeb_v",
-                                10:"/project/_6_research_v/_6-3_logiciels_v",
-                                11:"/project/_7_rushes/_7-1_texts_v",
-                                12:"/project/_7_rushes/_7-2_audio_v",
-                                13:"/project/_7_rushes/_7-3_video_v",
-                                14:"/project/_7_rushes/_7-4_pictures",
-                                15:"/project/_7_rushes/_7-5_liensWeb_v",
-                                16:"/project/_3_software_v",
-                                17:"/project/_1_userDoc/source",
-                                18:"/project/_1_userDoc",
-                                19:"/project/_1_userDoc_v/source"
+                                "000":"/webDoc",
+                                "001":"/project",
+                                "002":"/project/_1_userDoc_v",
+                                "003":"/project/_2_modelization_v",
+                                "004":"/project/_3_software_v/_3-1_test_v",
+                                "005":"/project/_3_software_v/oldLibVers",
+                                "006":"/project/_4_PCB_v",
+                                "007":"/project/_5_techDoc_v/_5-1_liensWeb_v",
+                                "008":"/project/_6_research_v/_6-1_Etude_Documentation_v",
+                                "009":"/project/_6_research_v/_6-2_liensWeb_v",
+                                "010":"/project/_6_research_v/_6-3_logiciels_v",
+                                "011":"/project/_7_rushes/_7-1_texts_v",
+                                "012":"/project/_7_rushes/_7-2_audio_v",
+                                "013":"/project/_7_rushes/_7-3_video_v",
+                                "014":"/project/_7_rushes/_7-4_pictures",
+                                "015":"/project/_7_rushes/_7-5_liensWeb_v",
+                                "016":"/project/_3_software_v",
+                                "017":"/project/_1_userDoc/source",
+                                "018":"/project/_1_userDoc",
+                                "019":"/project/_1_userDoc_v/source"
                                 }
                                 
-        self._d_lstTxtFile   =   {
+        self._d_txtFileToCreate   =   {
             "gitignore":(
                         cf.f_createGitignore,
-                        self._d_arboDir[1]),
+                        self._d_arboDir["001"]),
             "README":(
                         cf.f_createREADME,
-                        self._d_arboDir[1]),
+                        self._d_arboDir["001"]),
             "VoLAB":(
                         cf.f_createVoLAB,
-                        self._d_arboDir[1]),
+                        self._d_arboDir["001"]),
 
             "init":(
                         cf.f_createInit,
-                        self._d_arboDir[16]),
+                        self._d_arboDir["016"]),
 
             "BugToDoLst":(
                         cf.f_createBugToDoLst,
-                        self._d_arboDir[2]),
+                        self._d_arboDir["002"]),
 
             "make":(
                         cf.f_createMakeBat,
-                        self._d_arboDir[2]),
+                        self._d_arboDir["002"]),
 
             "Makefile":(
                         cf.f_createMakefile,
-                        self._d_arboDir[2])
+                        self._d_arboDir["002"])
             }
 
 ####
@@ -263,17 +264,17 @@ class C_Arbo(object) :
 ####
     
     def f_loopFile(self, *args, **kwargs) :
-        """ Permet de parcourrir '_d_lstTxtFile' pour créer les fichiers textes associers
+        """ Permet de parcourrir '_d_txtFileToCreate' pour créer les fichiers textes associers
             à chaque item du tuple
         """
         v_projectName   = self.f_getProjectName()
         t_exeptArgs     = args
-        for k in self._d_lstTxtFile.keys() :
+        for k in self._d_txtFileToCreate.keys() :
             
             if (k not in t_exeptArgs) or (k not in t_exeptArgs[0]) :
-                v_filePath = self.v_localDir + self._d_lstTxtFile[k][1]
+                v_filePath = self.v_localDir + self._d_txtFileToCreate[k]["001"]
                 
-                v_fileName, v_txtData = self._d_lstTxtFile[k][0]( v_projectName, v_filePath )
+                v_fileName, v_txtData = self._d_txtFileToCreate[k][0]( v_projectName, v_filePath )
                 
                 self.f_wFile( v_fileName, v_txtData )
             
@@ -284,7 +285,7 @@ class C_Arbo(object) :
     def f_wFile( self, v_fileName, v_txtData ) :
         """ Permet de créer les fichiers texte dans l'arborescence du projet """
         v_fileName = os.path.normpath(v_fileName)
-        with open(v_fileName, 'w') as i_fileLog :
+        with open(v_fileName, 'w', encoding = "utf-8") as i_fileLog :
             if self._v_verbose :
                 print( "Création du fichier : '{}'".format(v_fileName))
             if v_txtData :
@@ -294,7 +295,7 @@ class C_Arbo(object) :
 
     def f_copyFile(self) :
         """ Permet de copier tous les fichiers qui se trouvent dans le dossier
-            '_3-2_sources' vers leur déstination dans la nouvelle arborescence
+            '_3-2_sourcesFileToCopy' vers leur déstination dans la nouvelle arborescence
         """
         
         for _, _, l_file in os.walk( self.v_sourceDir ) :
@@ -310,12 +311,12 @@ class C_Arbo(object) :
     def f_copyLogo(self) :
         """ copie du logo dans le repertoire de destination """
         try :
-            v_target = self.v_localDir + self._d_arboDir[1]
+            v_target = self.v_localDir + self._d_arboDir["001"]
             shutil.copy( self._v_logoSourceFQFN, v_target, follow_symlinks=False )
             if self._v_verbose :
                 print( "copie du fichier : {} dans : {}".format(self._v_logoSourceFQFN,v_target))
             
-            v_logoPathTarget = self.v_localDir + self._d_arboDir[14]
+            v_logoPathTarget = self.v_localDir + self._d_arboDir["014"]
             shutil.copy( self._v_logoSourceFQFN, v_logoPathTarget, follow_symlinks=False )
             
             if self._v_verbose :
@@ -328,7 +329,7 @@ class C_Arbo(object) :
     def f_gitInit(self) :
         """ initialisation de git """
         if self._v_gitInit :
-            os.chdir(self.v_localDir+self._d_arboDir[1])
+            os.chdir(self.v_localDir+self._d_arboDir["001"])
             os.system("git init")
             # os.system() : permet d'executer une commande exterieur
         else : pass
@@ -338,7 +339,7 @@ class C_Arbo(object) :
     def f_sphinxInit( self ) :
         """ Initialisation de Sphinx """
         if self._v_gitInit :
-            os.chdir(self.v_localDir+self._d_arboDir[2])
+            os.chdir(self.v_localDir+self._d_arboDir["002"])
             os.system( "sphinx-quickstart -q -p {} -a Poltergeist42 "\
                         "--sep -l fr --ext-autodoc --ext-githubpages "\
                         "--no-makefile --no-batchfile".format( self.f_getProjectName() )
@@ -350,12 +351,12 @@ class C_Arbo(object) :
     def f_setChangeConf( self ) :
         """ Permet de modifier le fichiers 'conf.py' qui est générer par Sphinx """
         if self._v_sphinxInit :
-            v_path = self.v_localDir + self._d_arboDir[19]
+            v_path = self.v_localDir + self._d_arboDir["019"]
             
             v_tempFile = "{}/tempF".format( v_path )
             v_confFile = "{}/conf.py".format( v_path )
-            with open(v_tempFile, 'a') as tf:
-                with open(v_confFile, 'r') as rm :
+            with open(v_tempFile, 'a', encoding = "utf-8") as tf:
+                with open(v_confFile, 'r', encoding = "utf-8") as rm :
                     for l in rm :
                         if l[:-1] == "# import os" :
                             tf.write("import os\n")
@@ -375,17 +376,15 @@ class C_Arbo(object) :
     
 ####
 
-    def f_setSphinx( self ) :
+    def f_setToggleSphinxInit( self ) :
         """ Permet de définir '_v_sphinxInit' à Vrai ou Faux.
             L'état est inversé à chaque appel
         """
         self._v_sphinxInit =  not self._v_sphinxInit
-        # if self._v_sphinxInit :
-            # self._d_arboDir[2] = "/project/_1_userDoc"
     
 ####
 
-    def f_setGit( self ) :
+    def f_setToggleGitInit( self ) :
         """ Permet de définir '_v_gitInit' à Vrai ou Faux.
             L'état est inversé à chaque appel
         """
@@ -393,34 +392,12 @@ class C_Arbo(object) :
     
 ####
 
-    def f_setVerbose( self ) :
+    def f_setToggleVerbose( self ) :
         """ Permet de définir '_v_gitInit' à Vrai ou Faux.
             L'état est inversé à chaque appel
         """
         self._v_verbose =  not self._v_verbose
     
-####
-    
-    def f_osIdentifier(self) :
-        """ Permet d'identifier le type de systeme d'exploitation """
-        v_osType = sys.platform
-               
-        if v_osType == 'linux' :
-            v_clear = "clear"
-            self._v_logoSourceFQFN = os.path.normpath(
-                "/media/polter/JEANCLOUD/Perso/LAB/Pierre/"\
-                "python/projet/arboProject/_7_rushes/_7-4_pictures/"\
-                "logoVoLAB_200x200.jpg")
-        elif  v_osType == "win32" :
-            v_clear = "cls"
-            self._v_logoSourceFQFN = os.path.normpath(
-                "C:/mntJeanCloud/Perso/LAB/Pierre/"\
-                "python/projet/arboProject/_7_rushes/_7-4_pictures/"\
-                "logoVoLAB_200x200.jpg")
-            
-        os.system(v_clear)
-        print( "v_osType = ", v_osType)
-
 ####
 
     def f_testFunc(self, *args, **kwargs ) :
@@ -445,18 +422,17 @@ def main() :
     args = parser.parse_args()
     
     # Création d'un tuple contenant l'ensemble des exeptions de dossier
-    t_exeptDir = (16, 17, 18, 19)
+    t_exeptDir = ("016", "017", "018", "019")
         
     # Création d'un tuple contenant l'ensemble des exeptions de fichier
     t_exeptFile = ()
     
     i_arbo = C_Arbo()
     
-    if args.verbose or args.all : i_arbo.f_setVerbose()
-    if args.sphinx or args.all : i_arbo.f_setSphinx()
-    if args.git or args.all : i_arbo.f_setGit()
+    if args.verbose or args.all : i_arbo.f_setToggleVerbose()
+    if args.sphinx or args.all : i_arbo.f_setToggleSphinxInit()
+    if args.git or args.all : i_arbo.f_setToggleGitInit()
     
-    # i_arbo.f_osIdentifier()
     i_arbo.f_setProjectName()
     i_arbo.f_dirInit()
     i_arbo.f_dir(t_exeptDir)
