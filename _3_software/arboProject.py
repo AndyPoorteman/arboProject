@@ -9,7 +9,7 @@ Infos
    :Projet:             arboProject
    :Nom du fichier:     arboProject.py
    :Autheur:            `Poltergeist42 <https://github.com/poltergeist42>`_
-   :Version:            20170728
+   :Version:            20170805
 
 ####
 
@@ -95,10 +95,13 @@ class C_Arbo(object) :
         self._v_projectName = ""
         self._v_author      = "Poltergeist42"
         
+        with open("defArbo.json", 'r', encoding = "utf-8") as f :
+            self._d_defArboJson = json.load(f)
+        
         self._d_arboDir     =   {
                                 "000":"/webDoc",
                                 "001":"/project",
-                                "002":"/project/_1_userDoc_v",
+                                "002":"/project/_1_userDoc",
                                 "003":"/project/_2_modelization_v",
                                 "004":"/project/_3_software_v/_3-1_test_v",
                                 "005":"/project/_3_software_v/oldLibVers",
@@ -114,28 +117,27 @@ class C_Arbo(object) :
                                 "015":"/project/_7_rushes/_7-5_liensWeb_v",
                                 "016":"/project/_3_software_v",
                                 "017":"/project/_1_userDoc/source",
-                                "018":"/project/_1_userDoc",
-                                "019":"/project/_1_userDoc_v/source"
+                                # "018":"/project/_1_userDoc",
+                                # "019":"/project/_1_userDoc_v/source"
                                 }
                                 
         self._d_txtFileToCreate   =   {
-            "gitignore":(
-                        cf.f_createGitignore,
-                        self._d_arboDir["001"]),
+            # "gitignore":(
+                        # cf.f_createGitignore,
+                        # self._d_arboDir["001"]),
             "README":(
                         cf.f_createREADME,
                         self._d_arboDir["001"]),
-            "VoLAB":(
-                        cf.f_createVoLAB,
-                        self._d_arboDir["001"]),
-
+            # "VoLAB":(
+                        # cf.f_createVoLAB,
+                        # self._d_arboDir["001"]),
             "init":(
                         cf.f_createInit,
                         self._d_arboDir["016"]),
 
-            "BugToDoLst":(
-                        cf.f_createBugToDoLst,
-                        self._d_arboDir["002"]),
+            # "BugToDoLst":(
+                        # cf.f_createBugToDoLst,
+                        # self._d_arboDir["002"]),
 
             "make":(
                         cf.f_createMakeBat,
@@ -145,6 +147,7 @@ class C_Arbo(object) :
                         cf.f_createMakefile,
                         self._d_arboDir["002"])
             }
+        self._d_txtFileToCopy = self._d_defArboJson["_d_txtFileToCopy"]
 
 ####
 
@@ -272,7 +275,7 @@ class C_Arbo(object) :
         for k in self._d_txtFileToCreate.keys() :
             
             if (k not in t_exeptArgs) or (k not in t_exeptArgs[0]) :
-                v_filePath = self.v_localDir + self._d_txtFileToCreate[k]["001"]
+                v_filePath = self.v_localDir + self._d_txtFileToCreate[k][1]
                 
                 v_fileName, v_txtData = self._d_txtFileToCreate[k][0]( v_projectName, v_filePath )
                 
@@ -297,33 +300,45 @@ class C_Arbo(object) :
         """ Permet de copier tous les fichiers qui se trouvent dans le dossier
             '_3-2_sourcesFileToCopy' vers leur déstination dans la nouvelle arborescence
         """
-        
+        v_workDir = os.getcwd()
         for _, _, l_file in os.walk( self.v_sourceDir ) :
             for i in l_file :
-                if i[-4] == '.' :
-                    print( i[:-4] )
+            
+                if i[0] == '.' : i = i[1:]
+                if i[-4]== '.' : i = i[:-4]
+                
+                fileName = alterUsage = path = alterPath = None
+                fileName = self._d_txtFileToCopy[i]["fileName"]
+                alterUsage = self._d_txtFileToCopy[i]["alterUsage"]
+                path = self._d_txtFileToCopy[i]["path"]
+                alterPath = self._d_txtFileToCopy[i]["alterPath"]
+
+                if alterUsage == "sphinx" and self._v_sphinxInit :
+                    v_path = alterPath
+                
+                elif alterUsage == "git" and self._v_gitInit :
+                    v_path = alterPath
+                
                 else :
-                    if i[0] == '.' :
-                        print( i[1:] )
-        
-####
-            
-    def f_copyLogo(self) :
-        """ copie du logo dans le repertoire de destination """
-        try :
-            v_target = self.v_localDir + self._d_arboDir["001"]
-            shutil.copy( self._v_logoSourceFQFN, v_target, follow_symlinks=False )
-            if self._v_verbose :
-                print( "copie du fichier : {} dans : {}".format(self._v_logoSourceFQFN,v_target))
-            
-            v_logoPathTarget = self.v_localDir + self._d_arboDir["014"]
-            shutil.copy( self._v_logoSourceFQFN, v_logoPathTarget, follow_symlinks=False )
-            
-            if self._v_verbose :
-                print( "copie du fichier : {} dans : {}".format(self._v_logoSourceFQFN, v_logoPathTarget))
-        
-        except FileNotFoundError :
-            print( "fichier non trouvé" )
+                    v_path = path
+                    
+                v_source = os.path.normpath(self.v_sourceDir + "/" + fileName)
+
+                for id in range(len(v_path)) :
+                    v_target = os.path.normpath(v_workDir + v_path[id])
+                    # print(f"\trep de travail : {v_workDir}\n")
+                    # print(f"\tv_target : {v_target}")
+
+                    try:
+                        shutil.copy(v_source, v_target)
+                        if self._v_verbose :
+                            print( "copie du fichier : {} dans : {}".format(fileName,v_path[id]))                    
+                            
+                    except shutil.Error as e:
+                        print(f"Error: {e}")
+                    # eg. source or destination doesn't exist
+                    except IOError as e:
+                        print(f"Error: {e.strerror}")
 ####
             
     def f_gitInit(self) :
@@ -351,7 +366,7 @@ class C_Arbo(object) :
     def f_setChangeConf( self ) :
         """ Permet de modifier le fichiers 'conf.py' qui est générer par Sphinx """
         if self._v_sphinxInit :
-            v_path = self.v_localDir + self._d_arboDir["019"]
+            v_path = self.v_localDir + self._d_arboDir["017"]
             
             v_tempFile = "{}/tempF".format( v_path )
             v_confFile = "{}/conf.py".format( v_path )
@@ -440,7 +455,8 @@ def main() :
 
     i_arbo.f_loopFile(t_exeptFile)
     i_arbo.f_setChangeConf()
-    i_arbo.f_copyLogo()
+    # i_arbo.f_copyLogo()
+    i_arbo.f_copyFile()
     i_arbo.f_gitInit()
     
     if args.test :

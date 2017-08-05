@@ -1,0 +1,40 @@
+{
+    "_d_txtFileToCopy": {
+        "gitignore": {
+            "fileName": ".gitignore",
+            "alterUsage": "",
+            "path": [
+               "/project"
+            ],
+            "alterPath" : []
+        },
+        "Bug_ToDoLst" : {
+            "fileName"  : "Bug_ToDoLst.rst",
+            "alterUsage": "sphinx",
+            "path"      : [
+                "/project/_1_userDoc"
+            ],
+            "alterPath" : [
+                "/project/_1_userDoc/source"
+            ]
+        },
+        "logoVoLAB_200x200" : {
+            "fileName"  : "logoVoLAB_200x200.jpg",
+            "alterUsage": "",
+            "path"      : [
+                "/project",
+                "/project/_7_rushes/_7-4_pictures"
+            ],
+            "alterPath" : []
+        },
+        "VoLAB" : {
+            "fileName"  : "VoLAB.rst",
+            "alterUsage": "",
+            "path"      : [
+                "/project"
+            ],
+            "alterPath" : []
+        }
+    }
+}
+
