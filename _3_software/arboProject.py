@@ -90,7 +90,7 @@ class C_Arbo(object) :
         
         self._v_gitInit     = False
         self._v_sphinxInit  = False
-        self._v_verbose       = False
+        self._v_verbose     = False
         
         self._v_projectName = ""
         self._v_author      = "Poltergeist42"
@@ -98,56 +98,33 @@ class C_Arbo(object) :
         with open("defArbo.json", 'r', encoding = "utf-8") as f :
             self._d_defArboJson = json.load(f)
         
-        self._d_arboDir     =   {
-                                "000":"/webDoc",
-                                "001":"/project",
-                                "002":"/project/_1_userDoc",
-                                "003":"/project/_2_modelization_v",
-                                "004":"/project/_3_software_v/_3-1_test_v",
-                                "005":"/project/_3_software_v/oldLibVers",
-                                "006":"/project/_4_PCB_v",
-                                "007":"/project/_5_techDoc_v/_5-1_liensWeb_v",
-                                "008":"/project/_6_research_v/_6-1_Etude_Documentation_v",
-                                "009":"/project/_6_research_v/_6-2_liensWeb_v",
-                                "010":"/project/_6_research_v/_6-3_logiciels_v",
-                                "011":"/project/_7_rushes/_7-1_texts_v",
-                                "012":"/project/_7_rushes/_7-2_audio_v",
-                                "013":"/project/_7_rushes/_7-3_video_v",
-                                "014":"/project/_7_rushes/_7-4_pictures",
-                                "015":"/project/_7_rushes/_7-5_liensWeb_v",
-                                "016":"/project/_3_software_v",
-                                "017":"/project/_1_userDoc/source",
-                                # "018":"/project/_1_userDoc",
-                                # "019":"/project/_1_userDoc_v/source"
-                                }
+        # self._d_arboDir     =   {
+                                # "000":"/webDoc",
+                                # "001":"/project",
+                                # "002":"/project/_1_userDoc",
+                                # "003":"/project/_2_modelization_v",
+                                # "004":"/project/_3_software_v/_3-1_test_v",
+                                # # "005":"/project/_3_software_v/oldLibVers",
+                                # "006":"/project/_4_PCB_v",
+                                # "007":"/project/_5_techDoc_v/_5-1_liensWeb_v",
+                                # "008":"/project/_6_research_v/_6-1_Etude_Documentation_v",
+                                # "009":"/project/_6_research_v/_6-2_liensWeb_v",
+                                # "010":"/project/_6_research_v/_6-3_logiciels_v",
+                                # "011":"/project/_7_rushes/_7-1_texts_v",
+                                # "012":"/project/_7_rushes/_7-2_audio_v",
+                                # "013":"/project/_7_rushes/_7-3_video_v",
+                                # "014":"/project/_7_rushes/_7-4_pictures",
+                                # "015":"/project/_7_rushes/_7-5_liensWeb_v",
+                                # "016":"/project/_3_software_v",
+                                # "017":"/project/_1_userDoc/source",
+                                # # "019":"/project/_1_userDoc_v/source"
+                                # }
                                 
-        self._d_txtFileToCreate   =   {
-            # "gitignore":(
-                        # cf.f_createGitignore,
-                        # self._d_arboDir["001"]),
-            "README":(
-                        cf.f_createREADME,
-                        self._d_arboDir["001"]),
-            # "VoLAB":(
-                        # cf.f_createVoLAB,
-                        # self._d_arboDir["001"]),
-            "init":(
-                        cf.f_createInit,
-                        self._d_arboDir["016"]),
-
-            # "BugToDoLst":(
-                        # cf.f_createBugToDoLst,
-                        # self._d_arboDir["002"]),
-
-            "make":(
-                        cf.f_createMakeBat,
-                        self._d_arboDir["002"]),
-
-            "Makefile":(
-                        cf.f_createMakefile,
-                        self._d_arboDir["002"])
-            }
-        self._d_txtFileToCopy = self._d_defArboJson["_d_txtFileToCopy"]
+        self._d_txtFileToCopy       = self._d_defArboJson["_d_txtFileToCopy"]
+        self._d_sphinxCFG           = self._d_defArboJson["_d_sphinxCFG"]
+        self._d_gitCFG              = self._d_defArboJson["_d_gitCFG"]
+        self._d_txtFileToCreate     = self._d_defArboJson["_d_txtFileToCreate"]
+        self._d_arboDir             = self._d_defArboJson["_d_arboDir"]
 
 ####
 
@@ -157,7 +134,7 @@ class C_Arbo(object) :
             self._v_projectName = v_projectName
             
         elif __name__ == '__main__':
-            v_projectName = input( "entrez le nom du projet : " )
+            v_projectName = input( "Entrez le nom du projet : " )
             self._v_projectName = v_projectName
             
 ####
@@ -199,28 +176,34 @@ class C_Arbo(object) :
         
     def f_dir(self, *t_exeptArgs) :
         """ Creation de la liste des dossiers et de leur sous dossiers """
+        ## Verbose
+        if self._v_verbose :
+            print( "** Début de création des dossiers **\n")
+            
         for k in self._d_arboDir.keys() :
-            if (
-                # (k not in t_exeptArgs) or\
-                (k not in t_exeptArgs[0])
-                ) :
-                v_target = self.v_localDir + self._d_arboDir[k]
-                if self.f_chkIfDir( v_target ) :
-                    pass
-                else :
-                    if self._v_verbose :
-                        print( "Création du dossier : '{}'".format(self._d_arboDir[k]))
-                        
-                    os.makedirs(os.path.normpath(v_target), mode=0o777, exist_ok=True)
-                        # os.makedirs() : Permet de creer le repertoire indiquer par
-                        # la variable v_target. Si les repertoires parents n'existent
-                        # pas, os.makedirs les creera automatiquement
-                        #
-                        # os.path.normpath() permet de normaliser la syntaxe du
-                        # chemin indiquer par v_target.
-                        # N.B : pour windows, les "\\" et '/' seront remplacer
-                        # par '\'
-            else : pass
+           
+            v_target = self.v_localDir + self._d_arboDir[k]["path"][0]
+            if self.f_chkIfDir( v_target ) :
+                pass
+            else :
+            
+                ## Verbose
+                if self._v_verbose :
+                    print( f"\t* Création du dossier : {self._d_arboDir[k]['path'][0]}")
+                    
+                os.makedirs(os.path.normpath(v_target), mode=0o777, exist_ok=True)
+                    # os.makedirs() : Permet de creer le repertoire indiquer par
+                    # la variable v_target. Si les repertoires parents n'existent
+                    # pas, os.makedirs les creera automatiquement
+                    #
+                    # os.path.normpath() permet de normaliser la syntaxe du
+                    # chemin indiquer par v_target.
+                    # N.B : pour windows, les "\\" et '/' seront remplacer
+                    # par '\'
+        
+        ## Verbose
+        if self._v_verbose :
+            print( "** Fin de création des dossiers **\n")
                         
 ####
                             
@@ -270,18 +253,25 @@ class C_Arbo(object) :
         """ Permet de parcourrir '_d_txtFileToCreate' pour créer les fichiers textes associers
             à chaque item du tuple
         """
+        ## Verbose
+        if self._v_verbose :
+            print( "** Début de création des fichiers**\n")
+            
         v_projectName   = self.f_getProjectName()
         t_exeptArgs     = args
         for k in self._d_txtFileToCreate.keys() :
             
-            if (k not in t_exeptArgs) or (k not in t_exeptArgs[0]) :
-                v_filePath = self.v_localDir + self._d_txtFileToCreate[k][1]
-                
-                v_fileName, v_txtData = self._d_txtFileToCreate[k][0]( v_projectName, v_filePath )
-                
-                self.f_wFile( v_fileName, v_txtData )
-            
-            else : pass
+            v_exec = f"cf.f_create{k}"
+            v_fqfn, v_txtData = eval( v_exec )(   self.f_getProjectName(),
+                                    self._d_txtFileToCreate[k]["v_fileName"],
+                                    self._d_txtFileToCreate[k]["path"][0]
+                                )
+            v_fqfn = os.path.normpath( f"{self.v_localDir}{v_fqfn}" )
+            self.f_wFile( v_fqfn, v_txtData )
+                            
+        ## Verbose
+        if self._v_verbose :
+            print( "** Fin de création des fichiers**\n")
 
 ####
 
@@ -289,18 +279,25 @@ class C_Arbo(object) :
         """ Permet de créer les fichiers texte dans l'arborescence du projet """
         v_fileName = os.path.normpath(v_fileName)
         with open(v_fileName, 'w', encoding = "utf-8") as i_fileLog :
-            if self._v_verbose :
-                print( "Création du fichier : '{}'".format(v_fileName))
+            
             if v_txtData :
                 i_fileLog.write(v_txtData)
-    
+
+            ## Verbose
+            if self._v_verbose :
+                print( f"\t* Création du fichier : '{v_fileName}'")
+
 ####    
 
     def f_copyFile(self) :
         """ Permet de copier tous les fichiers qui se trouvent dans le dossier
             '_3-2_sourcesFileToCopy' vers leur déstination dans la nouvelle arborescence
         """
-        v_workDir = os.getcwd()
+        ## Verbose
+        if self._v_verbose :
+            print( "** Début de copie des fichiers**\n")
+            
+        v_workDir = self.v_localDir
         for _, _, l_file in os.walk( self.v_sourceDir ) :
             for i in l_file :
             
@@ -326,39 +323,81 @@ class C_Arbo(object) :
 
                 for id in range(len(v_path)) :
                     v_target = os.path.normpath(v_workDir + v_path[id])
-                    # print(f"\trep de travail : {v_workDir}\n")
-                    # print(f"\tv_target : {v_target}")
 
                     try:
                         shutil.copy(v_source, v_target)
+                        
+                        ## Verbose
                         if self._v_verbose :
-                            print( "copie du fichier : {} dans : {}".format(fileName,v_path[id]))                    
+                            print( 
+                                f"\t* copie du fichier : {fileName}"\
+                                f" dans le répertoire : {v_path[id]}")
                             
                     except shutil.Error as e:
                         print(f"Error: {e}")
                     # eg. source or destination doesn't exist
                     except IOError as e:
                         print(f"Error: {e.strerror}")
+                        
+        ## Verbose
+        if self._v_verbose :
+            print( "** Fin de copie des fichiers**\n")
+
 ####
             
     def f_gitInit(self) :
         """ initialisation de git """
         if self._v_gitInit :
-            os.chdir(self.v_localDir+self._d_arboDir["001"])
+            ## Verbose
+            if self._v_verbose :
+                print("** Début d'initialisation de GIT **\n")
+                
+            os.chdir(self.v_localDir+self._d_gitCFG["path"][0])
             os.system("git init")
-            # os.system() : permet d'executer une commande exterieur
+            os.chdir(self.v_localDir)
+            
+            ## Verbose
+            if self._v_verbose :
+                print("** Fin d'initialisation de GIT **\n")
+
         else : pass
                 
 ####
                 
     def f_sphinxInit( self ) :
         """ Initialisation de Sphinx """
-        if self._v_gitInit :
-            os.chdir(self.v_localDir+self._d_arboDir["002"])
+        if self._v_sphinxInit :
+            ## Verbose
+            if self._v_verbose :
+                print("** Début d'initialisation de Sphinx **\n")
+                
+            os.chdir(self.v_localDir+self._d_sphinxCFG["sphinx"]["path"][0])
             os.system( "sphinx-quickstart -q -p {} -a Poltergeist42 "\
                         "--sep -l fr --ext-autodoc --ext-githubpages "\
                         "--no-makefile --no-batchfile".format( self.f_getProjectName() )
                         )
+            v_fqfn, v_txtData = self.f_createMakeBat(   self.f_getProjectName(),
+                                    self._d_sphinxCFG["makeBat"]["v_fileName"],
+                                    self._d_sphinxCFG["makeBat"]["path"][0]
+                                )
+            v_fqfn = os.path.normpath( f"{self.v_localDir}{v_fqfn}" )
+            self.f_wFile( v_fqfn, v_txtData )
+            
+            v_fqfn, v_txtData = self.f_createMakefile(   self.f_getProjectName(),
+                                    self._d_sphinxCFG["Makefile"]["v_fileName"],
+                                    self._d_sphinxCFG["Makefile"]["path"][0]
+                                )
+                                
+            v_fqfn = os.path.normpath( f"{self.v_localDir}{v_fqfn}" )
+            self.f_wFile( v_fqfn, v_txtData )
+
+            self.f_setChangeConf()
+            os.chdir(self.v_localDir)
+                            
+            ## Verbose
+            if self._v_verbose :
+                print("** Fin d'initialisation de Sphinx **\n")
+                
         else : pass
     
 ####
@@ -366,10 +405,9 @@ class C_Arbo(object) :
     def f_setChangeConf( self ) :
         """ Permet de modifier le fichiers 'conf.py' qui est générer par Sphinx """
         if self._v_sphinxInit :
-            v_path = self.v_localDir + self._d_arboDir["017"]
-            
-            v_tempFile = "{}/tempF".format( v_path )
-            v_confFile = "{}/conf.py".format( v_path )
+            v_path = self.v_localDir + self._d_sphinxCFG["conf"]["path"][0]
+            v_tempFile = f"{v_path}/tempF"
+            v_confFile = f"{v_path}/{self._d_sphinxCFG['conf']['v_fileName']}"
             with open(v_tempFile, 'a', encoding = "utf-8") as tf:
                 with open(v_confFile, 'r', encoding = "utf-8") as rm :
                     for l in rm :
@@ -386,9 +424,92 @@ class C_Arbo(object) :
 
             os.remove(v_confFile)
             os.rename(v_tempFile, v_confFile )
-            print( "Modification du fichier 'conf.py'" )
+            
+            ## Verbose
+            if self._v_verbose :
+                print( "\t* Modification du fichier 'conf.py'" )
+                
         else : pass
     
+####
+
+    def f_createMakeBat(self, *args, **kwargs) :
+        """ Retourne les informations pour la création du fichiers 'make.bat' """
+        if args :
+            v_projectName   = args[0]
+            v_fileName      = args[1]
+            v_filePath      = args[2]
+            
+        v_fqfn = f"{v_filePath}/{v_fileName}"
+        v_txtData = (
+            "@ECHO OFF\n\n"\
+            "pushd %~dp0\n\n"\
+            "REM Command file for Sphinx documentation\n\n"\
+            "if \"%SPHINXBUILD%\" == \"\" (\n"\
+            "    set SPHINXBUILD=python -msphinx\n"\
+            ")\n"
+            "set SOURCEDIR=source\n"\
+            "set BUILDDIR= ..\\..\\webDoc\n"\
+            "set SPHINXPROJ={}\n\n".format( v_projectName ) +
+            "if \"%1\" == \"\" goto help\n\n"\
+            "%SPHINXBUILD% >NUL 2>NUL\n"\
+            "if errorlevel 9009 (\n"\
+            "    echo.\n"\
+            "    echo.The Sphinx module was not found. Make sure you have Sphinx installed,\n"\
+            "    echo.then set the SPHINXBUILD environment variable to point to the full\n"\
+            "    echo.path of the 'sphinx-build' executable. Alternatively you may add the\n"\
+            "    echo.Sphinx directory to PATH.\n"\
+            "    echo.\n"\
+            "    echo.If you don't have Sphinx installed, grab it from\n"\
+            "    echo.http://sphinx-doc.org/\n"\
+            "    exit /b 1\n"\
+            ")\n\n"\
+            "%SPHINXBUILD% -M %1 %SOURCEDIR% %BUILDDIR% %SPHINXOPTS%\n"\
+            "rem reconstruction de la branch \"gh-pages\" et mise a jour du depot distant\n"\
+            "cd %BUILDDIR%\\html\n"\
+            "git add .\n"\
+            "git commit -m \"rebuilt docs\"\n"\
+            "git push origin gh-pages\n\n"\
+            "goto end\n\n"\
+            ":help\n"\
+            "%SPHINXBUILD% -M help %SOURCEDIR% %BUILDDIR% %SPHINXOPTS%\n\n"\
+            ":end\n"\
+            "popd\n"
+                    )
+        return  v_fqfn, v_txtData
+   
+####
+    
+    def f_createMakefile(self, *args, **kwargs) :
+        """ Retourne les informations pour la création du fichiers 'Makefile' """
+        if args :
+            v_projectName   = args[0]
+            v_fileName      = args[1]
+            v_filePath      = args[2]
+            
+        v_fqfn = f"{v_filePath}/{v_fileName}"
+        v_txtData = (
+            "# Minimal makefile for Sphinx documentation\n\n"\
+            "# You can set these variables from the command line.\n"\
+            "SPHINXOPTS      = \n"\
+            "SPHINXBUILD     = python -msphinx\n"\
+            "SPHINXPROJ      = {}\n".format( v_projectName ) +
+            "SOURCEDIR       = .\n"\
+            "BUILDDIR        = ../../webDoc\n\n"\
+            "# Put it first so that 'make' without argument is like 'make help'.\n"\
+            "help:\n"\
+            "    @$(SPHINXBUILD) -M help \"$(SOURCEDIR)\" \"$(BUILDDIR)\" $(SPHINXOPTS) $(O)\n\n"\
+            ".PHONY: help Makefile\n\n"\
+            "# Catch-all target: route all unknown targets to Sphinx using the new\n"\
+            "# 'make mode' option.  $(O) is meant as a shortcut for $(SPHINXOPTS).\n"\
+            "%: Makefile\n"\
+            "    @$(SPHINXBUILD) -M $@ \"$(SOURCEDIR)\" \"$(BUILDDIR)\" $(SPHINXOPTS) $(O)\n\n"\
+            "# reconstruction de la branch 'gh-pages' et mise a jour du depot distant\n"\
+            "buildandcommithtml: html\n\n"\
+            "    cd $(BUILDDIR)/html; git add . ; git commit -m \rebuilt docs\"; git push origin gh-pages\n"
+                            )
+        return  v_fqfn, v_txtData
+
 ####
 
     def f_setToggleSphinxInit( self ) :
@@ -437,10 +558,8 @@ def main() :
     args = parser.parse_args()
     
     # Création d'un tuple contenant l'ensemble des exeptions de dossier
-    t_exeptDir = ("016", "017", "018", "019")
         
     # Création d'un tuple contenant l'ensemble des exeptions de fichier
-    t_exeptFile = ()
     
     i_arbo = C_Arbo()
     
@@ -450,19 +569,17 @@ def main() :
     
     i_arbo.f_setProjectName()
     i_arbo.f_dirInit()
-    i_arbo.f_dir(t_exeptDir)
+    i_arbo.f_dir()
     i_arbo.f_sphinxInit()
 
-    i_arbo.f_loopFile(t_exeptFile)
-    i_arbo.f_setChangeConf()
-    # i_arbo.f_copyLogo()
+    i_arbo.f_loopFile()
     i_arbo.f_copyFile()
     i_arbo.f_gitInit()
     
     if args.test :
         i_arbo.f_testFunc("f_copyFile" )
         
-    input("\n\n\t\tfin de creation de l'arboressence")
+    input("\n\t\tfin de creation de l'arboressence")
 
 if __name__ == '__main__':
     main()

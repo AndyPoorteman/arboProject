@@ -35,6 +35,200 @@
             ],
             "alterPath" : []
         }
+    },
+
+    
+    
+    "_d_sphinxCFG": {
+        "sphinx" : {
+            "v_fileName" : "",
+            "alterUsage": "sphinx",
+            "path": [
+               "/project/_1_userDoc"
+            ],
+            "alterPath" : []
+        },
+        "makeBat" : {
+            "v_fileName" : "make.bat",
+            "alterUsage": "sphinx",
+            "path": [
+               "/project/_1_userDoc"
+            ],
+            "alterPath" : []
+        },
+        "Makefile" : {
+            "v_fileName" : "Makefile",
+            "alterUsage": "sphinx",
+            "path": [
+               "/project/_1_userDoc"
+            ],
+            "alterPath" : []
+        },
+        "conf" : {
+            "v_fileName" : "conf.py",
+            "alterUsage": "sphinx",
+            "path": [
+               "/project/_1_userDoc/source"
+            ],
+            "alterPath" : []
+        }
+    },
+
+
+    
+    "_d_txtFileToCreate": {
+        "README" : {
+            "v_fileName" : "README.rst",
+            "alterUsage": "",
+            "path": [
+               "/project"
+            ],
+            "alterPath" : []
+        },
+        "Init" : {
+            "v_fileName" : "__init__.py",
+            "alterUsage": "",
+            "path": [
+               "/project/_3_software_v"
+            ],
+            "alterPath" : []
+        }
+    },
+
+
+    
+    "_d_arboDir" : {
+        "webDoc" : {
+            "v_fileName" : "",
+            "alterUsage": "",
+            "path": [
+               "/webDoc"
+            ],
+            "alterPath" : []
+        },
+        "project" : {
+            "v_fileName" : "",
+            "alterUsage": "",
+            "path": [
+               "/project"
+            ],
+            "alterPath" : []
+        },
+        "_1_userDoc" : {
+            "v_fileName" : "",
+            "alterUsage": "",
+            "path": [
+               "/project/_1_userDoc"
+            ],
+            "alterPath" : []
+        },
+        "_2_modelization_v" : {
+            "v_fileName" : "",
+            "alterUsage": "",
+            "path": [
+               "/project/_2_modelization_v"
+            ],
+            "alterPath" : []
+        },
+        "_3-1_test_v" : {
+            "v_fileName" : "",
+            "alterUsage": "",
+            "path": [
+               "/project/_3_software_v/_3-1_test_v"
+            ],
+            "alterPath" : []
+        },
+        "_4_PCB_v" : {
+            "v_fileName" : "",
+            "alterUsage": "",
+            "path": [
+               "/project/_4_PCB_v"
+            ],
+            "alterPath" : []
+        },
+        "_5-1_liensWeb_v" : {
+            "v_fileName" : "",
+            "alterUsage": "",
+            "path": [
+               "/project/_5_techDoc_v/_5-1_liensWeb_v"
+            ],
+            "alterPath" : []
+        },
+        "_6-1_Etude_Documentation_v" : {
+            "v_fileName" : "",
+            "alterUsage": "",
+            "path": [
+               "/project/_6_research_v/_6-1_Etude_Documentation_v"
+            ],
+            "alterPath" : []
+        },
+        "_6-2_liensWeb_v" : {
+            "v_fileName" : "",
+            "alterUsage": "",
+            "path": [
+               "/project/_6_research_v/_6-2_liensWeb_v"
+            ],
+            "alterPath" : []
+        },
+        "_6-3_logiciels_v" : {
+            "v_fileName" : "",
+            "alterUsage": "",
+            "path": [
+               "/project/_6_research_v/_6-3_logiciels_v"
+            ],
+            "alterPath" : []
+        },
+        "_7-1_texts_v" : {
+            "v_fileName" : "",
+            "alterUsage": "",
+            "path": [
+               "/project/_7_rushes/_7-1_texts_v"
+            ],
+            "alterPath" : []
+        },
+        "_7-2_audio_v" : {
+            "v_fileName" : "",
+            "alterUsage": "",
+            "path": [
+               "/project/_7_rushes/_7-2_audio_v"
+            ],
+            "alterPath" : []
+        },
+        "_7-3_video_v" : {
+            "v_fileName" : "",
+            "alterUsage": "",
+            "path": [
+               "/project/_7_rushes/_7-3_video_v"
+            ],
+            "alterPath" : []
+        },
+        "_7-4_pictures" : {
+            "v_fileName" : "",
+            "alterUsage": "",
+            "path": [
+               "/project/_7_rushes/_7-4_pictures"
+            ],
+            "alterPath" : []
+        },
+        "_7-5_liensWeb_v" : {
+            "v_fileName" : "",
+            "alterUsage": "",
+            "path": [
+               "/project/_7_rushes/_7-5_liensWeb_v"
+            ],
+            "alterPath" : []
+        }
+    },
+
+
+
+    "_d_gitCFG" : {
+            "v_fileName" : "",
+            "alterUsage": "",
+            "path": [
+               "/project"
+            ],
+            "alterPath" : []
     }
 }
 
