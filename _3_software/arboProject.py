@@ -9,7 +9,7 @@ Infos
    :Projet:             arboProject
    :Nom du fichier:     arboProject.py
    :Autheur:            `Poltergeist42 <https://github.com/poltergeist42>`_
-   :Version:            20170805
+   :Version:            20170808
 
 ####
 
@@ -435,7 +435,8 @@ class C_Arbo(object) :
             chaine de caratère représentant le chemin relatif vers le nouveau dossier de
             destination.
         
-            Cette Méthode est appellée par : 'f_sphinxInit'.
+            Cette Méthode est appellée par : 'f_sphinxInit'. Ce fichier faisant parti des
+            fichiers de configuration de Sphinx, il n'est pas générer depuis 'createFile'.
         """
         if args :
             v_projectName   = args[0]
@@ -493,8 +494,8 @@ class C_Arbo(object) :
             chaine de caratère représentant le chemin relatif vers le nouveau dossier de
             destination.
         
-            Cette Méthode est appellée par : 'f_sphinxInit'.
-        """
+            Cette Méthode est appellée par : 'f_sphinxInit'. Ce fichier faisant parti des
+            fichiers de configuration de Sphinx, il n'est pas générer depuis 'createFile'.        """
         if args :
             v_projectName   = args[0]
             v_fileName      = args[1]

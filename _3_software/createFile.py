@@ -9,7 +9,7 @@ Infos
    :Projet:             arboProject
    :Nom du fichier:     createFile.py
    :Autheur:            `Poltergeist42 <https://github.com/poltergeist42>`_
-   :Version:            20170721
+   :Version:            20170808
 
 ####
 
@@ -33,6 +33,10 @@ Déscriptif
                         
     :Fichiers:          createFile.py regroupe le corps de l'ensemble des fichiers qui
                         doivent être créés par défaut avec chaque nouveau projet.
+                        
+                        **N.B** : Les fichiers qui sont générer ici sont optionnels et
+                        n'empèche pas la création de l'arborescence ou la configuration
+                        de Sphinx.
 
 ####
 
@@ -55,7 +59,7 @@ lexique
 
 #################### Taille maximum des commentaires (90 caracteres)######################
 
-def f_createREADME(*args) :
+def f_createREADME(*args, **kwargs) :
     """ Retourne les informations pour la création du fichiers 'README.rst' """
     if args :
         v_projectName   = args[0]
@@ -107,7 +111,7 @@ def f_createREADME(*args) :
 ####
     
     
-def f_createInit(*args) :
+def f_createInit(*args, **kwargs) :
     """ Retourne les informations pour la création du fichiers '__init__.py' """
     if args :
         v_projectName   = args[0]
