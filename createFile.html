@@ -1,0 +1,277 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>createFile &#8212; documentation arboProject </title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Bug et ToDo-list" href="Bug_ToDoLst.html" />
+    <link rel="prev" title="defArbo.json" href="defArbo.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="createfile">
+<h1>createFile<a class="headerlink" href="#createfile" title="Lien permanent vers ce titre">¶</a></h1>
+<blockquote>
+<div><span class="target" id="module-_3_software.createFile"></span><div class="section" id="infos">
+<h2>Infos<a class="headerlink" href="#infos" title="Lien permanent vers ce titre">¶</a></h2>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Projet:</th><td class="field-body">arboProject</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nom du fichier:</th><td class="field-body">createFile.py</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Autheur:</th><td class="field-body"><a class="reference external" href="https://github.com/poltergeist42">Poltergeist42</a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Version:</th><td class="field-body">20170808</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<hr class="docutils" />
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Licence:</th><td class="field-body">CC-BY-NC-SA</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Liens:</th><td class="field-body"><a class="reference external" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">https://creativecommons.org/licenses/by-nc-sa/4.0/</a></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<hr class="docutils" />
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">dev language:</th><td class="field-body">Python 3.6</td>
+</tr>
+<tr class="field-even field"><th class="field-name">framework:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<hr class="docutils" />
+<div class="section" id="descriptif">
+<h2>Déscriptif<a class="headerlink" href="#descriptif" title="Lien permanent vers ce titre">¶</a></h2>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Projet:</th><td class="field-body"><p class="first">Ce projet permet de créer une arboressence de dossier et de sous
+dossier nécessaires à chaque nouveau projet. Ainsi que l’ensemble
+des fichiers qui y son ratachés. Il permet également d’initialiser
+le dépôt Git et l’outil de documentation Sphinx.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Fichiers:</th><td class="field-body"><p class="first">createFile.py regroupe le corps de l’ensemble des fichiers qui
+doivent être créés par défaut avec chaque nouveau projet.</p>
+<p class="last"><strong>N.B</strong> : Les fichiers qui sont générer ici sont optionnels et
+n’empèche pas la création de l’arborescence ou la configuration
+de Sphinx.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<hr class="docutils" />
+<div class="section" id="lexique">
+<h2>lexique<a class="headerlink" href="#lexique" title="Lien permanent vers ce titre">¶</a></h2>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><strong>v_</strong>:</th><td class="field-body">variable</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><strong>l_</strong>:</th><td class="field-body">list</td>
+</tr>
+<tr class="field-odd field"><th class="field-name"><strong>t_</strong>:</th><td class="field-body">tuple</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><strong>d_</strong>:</th><td class="field-body">dictionnaire</td>
+</tr>
+<tr class="field-odd field"><th class="field-name"><strong>f_</strong>:</th><td class="field-body">fonction</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><strong>C_</strong>:</th><td class="field-body">Class</td>
+</tr>
+<tr class="field-odd field"><th class="field-name"><strong>i_</strong>:</th><td class="field-body">Instance</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><strong>m_</strong>:</th><td class="field-body">Matrice</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<hr class="docutils" />
+<dl class="function">
+<dt id="_3_software.createFile.f_createInit">
+<code class="descclassname">_3_software.createFile.</code><code class="descname">f_createInit</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#_3_software.createFile.f_createInit" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Retourne les informations pour la création du fichiers “__init__.py”</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_3_software.createFile.f_createREADME">
+<code class="descclassname">_3_software.createFile.</code><code class="descname">f_createREADME</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#_3_software.createFile.f_createREADME" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Retourne les informations pour la création du fichiers “README.rst”</p>
+</dd></dl>
+
+</div>
+</div></blockquote>
+<div class="section" id="utilisation">
+<h2>Utilisation :<a class="headerlink" href="#utilisation" title="Lien permanent vers ce titre">¶</a></h2>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">Chaque nouvelle fonction ajoutée doit avoir un nom sous la forme :</p>
+<blockquote>
+<div><p>f_create[nom_du_fichier_sans_extension]</p>
+<p>example :</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">f_createREADME</span>
+</pre></div>
+</div>
+<p>Le nom du fichier correspond à une clef du dictionnaire «&nbsp;_d_txtFileToCreate{}&nbsp;»
+extrait depuis le fichier de configuration «&nbsp;defArbo.json&nbsp;». Cette est elle même un
+dictionnaire.</p>
+</div></blockquote>
+</li>
+<li><p class="first">Chaque fonction reçoit 3 argument qui doivent être présenter dans l’ordre suivant :</p>
+<blockquote>
+<div><ul class="simple">
+<li>v_projectName reçoit «&nbsp;args[0]&nbsp;». C’est le nom du projet qui est fournie par
+l’utilisateur au lancement de l’application.</li>
+<li>v_fileName reçoit args[1]. c’est le nom complet (avec son extension) du fichier
+à créer. Ce nom est récupérer depuis la clef «&nbsp;v_fileName&nbsp;» du dictionnaire
+correspondant au fichier dans le fichier de configuration «&nbsp;defArbo.json&nbsp;».</li>
+<li>v_filePath reçoit args[2]. c’est le chemin relatif du fichier
+à créer. Ce chemin est récupérer depuis la clef «&nbsp;v_filePath&nbsp;» du dictionnaire
+correspondant au fichier dans le fichier de configuration «&nbsp;defArbo.json&nbsp;».</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Donnée retournée par les fonctions :</p>
+<blockquote>
+<div><p>Les données retournées par les méthodes sont :</p>
+<ul>
+<li><p class="first">v_fqfn : c’est le regroupement des 2 variables «&nbsp;v_filePath&nbsp;» et «&nbsp;v_fileName&nbsp;»</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">v_fqfn</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{v_filePath}</span><span class="s2">/</span><span class="si">{v_fileName}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">v_txtData : C’est le corps du fichiers. Si le fichiers est vide, mettre cette
+varriable à False. Si le fichiers doit contenir du texte, il faut le formater
+dans une chaine de caractère (type str)</p>
+</li>
+</ul>
+<p><strong>N.B</strong> : les fonctions doivent obligatoirement retourner ces 2 variables (dans
+cette ordre)</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">return</span>  <span class="n">v_fqfn</span><span class="p">,</span> <span class="n">v_txtData</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table des Matières</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">createFile</a><ul>
+<li><a class="reference internal" href="#utilisation">Utilisation :</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="defArbo.html" title="Chapitre précédent">defArbo.json</a></li>
+      <li>Next: <a href="Bug_ToDoLst.html" title="Chapitre suivant">Bug et ToDo-list</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>Cette page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/createFile.rst.txt"
+            rel="nofollow">Montrer le code source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Recherche rapide</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Poltergeist42.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/createFile.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

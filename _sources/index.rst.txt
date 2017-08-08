@@ -10,11 +10,13 @@ Welcome to arboProject's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-
+   includeMe
+   arboProject
+   defArbo
+   createFile
+   Bug_ToDoLst
 
 Indices and tables
 ==================
 
-* :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`
