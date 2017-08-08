@@ -79,15 +79,14 @@ class C_Arbo(object) :
     pour chaque nouveau projet
     """
     def __init__(self) :
+        ## Initialisation des chemins par défaut
         self.v_localDir     = os.getcwd()
                                 # os.getcwd() : permet de recuperer le chemin
                                 # du repertoire local
         self.v_sourceDir    = os.path.normpath(
             "{}/_3-2_sourcesFileToCopy".format( self.v_localDir ))
             
-        self._v_logoSourceFQFN     = os.path.normpath(
-            "{}/logoVoLAB_200x200.jpg".format(self.v_sourceDir))
-        
+        ## Création et initialisation des variables globales
         self._v_gitInit     = False
         self._v_sphinxInit  = False
         self._v_verbose     = False
@@ -95,31 +94,11 @@ class C_Arbo(object) :
         self._v_projectName = ""
         self._v_author      = "Poltergeist42"
         
+        
+        ## Extraction des différent dictionnaire depuis le fichiers 'defArbo.json'
         with open("defArbo.json", 'r', encoding = "utf-8") as f :
             self._d_defArboJson = json.load(f)
         
-        # self._d_arboDir     =   {
-                                # "000":"/webDoc",
-                                # "001":"/project",
-                                # "002":"/project/_1_userDoc",
-                                # "003":"/project/_2_modelization_v",
-                                # "004":"/project/_3_software_v/_3-1_test_v",
-                                # # "005":"/project/_3_software_v/oldLibVers",
-                                # "006":"/project/_4_PCB_v",
-                                # "007":"/project/_5_techDoc_v/_5-1_liensWeb_v",
-                                # "008":"/project/_6_research_v/_6-1_Etude_Documentation_v",
-                                # "009":"/project/_6_research_v/_6-2_liensWeb_v",
-                                # "010":"/project/_6_research_v/_6-3_logiciels_v",
-                                # "011":"/project/_7_rushes/_7-1_texts_v",
-                                # "012":"/project/_7_rushes/_7-2_audio_v",
-                                # "013":"/project/_7_rushes/_7-3_video_v",
-                                # "014":"/project/_7_rushes/_7-4_pictures",
-                                # "015":"/project/_7_rushes/_7-5_liensWeb_v",
-                                # "016":"/project/_3_software_v",
-                                # "017":"/project/_1_userDoc/source",
-                                # # "019":"/project/_1_userDoc_v/source"
-                                # }
-                                
         self._d_txtFileToCopy       = self._d_defArboJson["_d_txtFileToCopy"]
         self._d_sphinxCFG           = self._d_defArboJson["_d_sphinxCFG"]
         self._d_gitCFG              = self._d_defArboJson["_d_gitCFG"]
@@ -175,7 +154,11 @@ class C_Arbo(object) :
 ####
         
     def f_dir(self, *t_exeptArgs) :
-        """ Creation de la liste des dossiers et de leur sous dossiers """
+        """ Creation de la liste des dossiers et de leur sous dossiers.
+        
+            Ces dossiers sont créer à partir du dictionnaire '_d_arboDir' qui est extrait
+            du fichier 'defArbo.json'.
+        """
         ## Verbose
         if self._v_verbose :
             print( "** Début de création des dossiers **\n")
@@ -250,8 +233,11 @@ class C_Arbo(object) :
 ####
     
     def f_loopFile(self, *args, **kwargs) :
-        """ Permet de parcourrir '_d_txtFileToCreate' pour créer les fichiers textes associers
-            à chaque item du tuple
+        """ Permet de parcourrir '_d_txtFileToCreate' pour créer les fichiers textes
+        associers à chaque clef.
+        
+        Ces fichiers sont créer à partir du dictionnaire '_d_txtFileToCreate' qui est
+        extrait du fichier 'defArbo.json'.
         """
         ## Verbose
         if self._v_verbose :
@@ -402,8 +388,17 @@ class C_Arbo(object) :
     
 ####
 
-    def f_setChangeConf( self ) :
-        """ Permet de modifier le fichiers 'conf.py' qui est générer par Sphinx """
+    def f_setChangeConf( self, v_relativPath = False ) :
+        """ Permet de modifier le fichiers 'conf.py' qui est générer par Sphinx.
+            Le chemin relatif par défaut est : '../../'.
+            Cette valeur est a modifier (v_relativPath)si l'arborescence utilisée est
+            différente de l'arborescence par défaut. 
+            
+            Cette Méthode est appellée par : 'f_sphinxInit'.
+        """
+        if not v_relativPath :
+            v_relativPath = "../../"
+        
         if self._v_sphinxInit :
             v_path = self.v_localDir + self._d_sphinxCFG["conf"]["path"][0]
             v_tempFile = f"{v_path}/tempF"
@@ -416,7 +411,7 @@ class C_Arbo(object) :
                         elif l[:-1] == "# import sys" :
                             tf.write("import sys\n")
                         elif l[:-1] == "# sys.path.insert(0, os.path.abspath('.'))" :
-                            tf.write("sys.path.insert(0, os.path.abspath('../../'))\n")
+                            tf.write(f"sys.path.insert(0, os.path.abspath({v_relativPath}))\n")
                         elif l[:-1] == "exclude_patterns = []" :
                             tf.write("exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']\n")
                         else :
@@ -434,11 +429,22 @@ class C_Arbo(object) :
 ####
 
     def f_createMakeBat(self, *args, **kwargs) :
-        """ Retourne les informations pour la création du fichiers 'make.bat' """
+        """ Retourne les informations pour la création du fichiers 'make.bat'.
+            Si le chemin de destination est différent du dossier par défaut
+            ('..\..\webDoc\'), il faut passé un quatrième argument sous la forme d'une
+            chaine de caratère représentant le chemin relatif vers le nouveau dossier de
+            destination.
+        
+            Cette Méthode est appellée par : 'f_sphinxInit'.
+        """
         if args :
             v_projectName   = args[0]
             v_fileName      = args[1]
             v_filePath      = args[2]
+            if len(args) == 4 :
+                v_buildir   = args[3]
+            else :
+                v_buildir   = "..\\..\\webDoc"
             
         v_fqfn = f"{v_filePath}/{v_fileName}"
         v_txtData = (
@@ -449,8 +455,8 @@ class C_Arbo(object) :
             "    set SPHINXBUILD=python -msphinx\n"\
             ")\n"
             "set SOURCEDIR=source\n"\
-            "set BUILDDIR= ..\\..\\webDoc\n"\
-            "set SPHINXPROJ={}\n\n".format( v_projectName ) +
+            "set BUILDDIR= {}\n"\
+            "set SPHINXPROJ={}\n\n".format( v_buildir, v_projectName ) +
             "if \"%1\" == \"\" goto help\n\n"\
             "%SPHINXBUILD% >NUL 2>NUL\n"\
             "if errorlevel 9009 (\n"\
@@ -481,11 +487,22 @@ class C_Arbo(object) :
 ####
     
     def f_createMakefile(self, *args, **kwargs) :
-        """ Retourne les informations pour la création du fichiers 'Makefile' """
+        """ Retourne les informations pour la création du fichiers 'Makefile'.
+            Si le chemin de destination est différent du dossier par défaut
+            ('..\..\webDoc\'), il faut passé un quatrième argument sous la forme d'une
+            chaine de caratère représentant le chemin relatif vers le nouveau dossier de
+            destination.
+        
+            Cette Méthode est appellée par : 'f_sphinxInit'.
+        """
         if args :
             v_projectName   = args[0]
             v_fileName      = args[1]
             v_filePath      = args[2]
+            if len(args) == 4 :
+                v_buildir = args[3]
+            else :
+                v_buildir = "../../webDoc"
             
         v_fqfn = f"{v_filePath}/{v_fileName}"
         v_txtData = (
@@ -495,7 +512,7 @@ class C_Arbo(object) :
             "SPHINXBUILD     = python -msphinx\n"\
             "SPHINXPROJ      = {}\n".format( v_projectName ) +
             "SOURCEDIR       = .\n"\
-            "BUILDDIR        = ../../webDoc\n\n"\
+            f"BUILDDIR        = {v_buildir}\n\n"\
             "# Put it first so that 'make' without argument is like 'make help'.\n"\
             "help:\n"\
             "    @$(SPHINXBUILD) -M help \"$(SOURCEDIR)\" \"$(BUILDDIR)\" $(SPHINXOPTS) $(O)\n\n"\
@@ -537,29 +554,37 @@ class C_Arbo(object) :
 ####
 
     def f_testFunc(self, *args, **kwargs ) :
-            print( "\n\t\t ## f_testFunc ##\n" )
-            print("args\t: ",args)
-            print("kwargs\t: ", kwargs)
-            for i in args :
-                print( "i\t: ", i )
-                v_exec = "self.{}".format(i)
-                print( "v_exec\t: ", v_exec )
-                eval( v_exec )()
+        """ Cette méthode permet de tester méthode pour éviter de devoir modifier la
+            séquence exécutée dans le 'main. Elle s'active avec l'option -t ou --test.
+        """
+        print( "\n\t\t ## f_testFunc ##\n" )
+        print("args\t: ",args)
+        print("kwargs\t: ", kwargs)
+        for i in args :
+            print( "i\t: ", i )
+            v_exec = "self.{}".format(i)
+            print( "v_exec\t: ", v_exec )
+            eval( v_exec )()
         
 def main() :
     """ fonction principale """
     parser = argparse.ArgumentParser()
-    parser.add_argument( "-s", "--sphinx", action='store_true', help="Initialisation de Sphinx")
-    parser.add_argument( "-g", "--git", action='store_true', help="Initialisation de Git")
-    parser.add_argument( "-v", "--verbose", action='store_true', help="permet l'affichage du déroulement des opérations")
-    parser.add_argument( "-a", "--all", action='store_true', help="active toutes les options d'arboProject")
-    parser.add_argument( "-t", "--test", action='store_true', help="permet de tester une methode")
+    parser.add_argument( "-s", "--sphinx", action='store_true',
+                        help="Initialisation de Sphinx")
+    
+    parser.add_argument( "-g", "--git", action='store_true',
+                        help="Initialisation de Git")
+    
+    parser.add_argument( "-v", "--verbose", action='store_true',
+                        help="permet l'affichage du déroulement des opérations")
+    
+    parser.add_argument( "-a", "--all", action='store_true',
+                        help="active toutes les options d'arboProject")
+
+    parser.add_argument( "-t", "--test", action='store_true',
+                        help="permet de tester une methode")
     
     args = parser.parse_args()
-    
-    # Création d'un tuple contenant l'ensemble des exeptions de dossier
-        
-    # Création d'un tuple contenant l'ensemble des exeptions de fichier
     
     i_arbo = C_Arbo()
     
@@ -577,7 +602,7 @@ def main() :
     i_arbo.f_gitInit()
     
     if args.test :
-        i_arbo.f_testFunc("f_copyFile" )
+        i_arbo.f_testFunc("" )
         
     input("\n\t\tfin de creation de l'arboressence")
 
