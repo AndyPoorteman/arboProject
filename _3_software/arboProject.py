@@ -71,7 +71,11 @@ import sys
 import argparse
 import json
 
-import createFile as cf
+try :
+    import createFile as cf
+    
+except ModuleNotFoundError :
+    print( "module non trouvé" )
 
 class C_Arbo(object) :
     """ 
