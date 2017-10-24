@@ -18,6 +18,16 @@
                 "/project/_1_userDoc/source"
             ]
         },
+        "includeMe" : {
+            "fileName"  : "includeMe.rst",
+            "alterUsage": "sphinx",
+            "path"      : [
+                "/project/_1_userDoc"
+            ],
+            "alterPath" : [
+                "/project/_1_userDoc/source"
+            ]
+        },
         "logoVoLAB_200x200" : {
             "fileName"  : "logoVoLAB_200x200.jpg",
             "alterUsage": "",
