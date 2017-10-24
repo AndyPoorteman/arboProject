@@ -1,6 +1,6 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
   <head>
@@ -36,7 +36,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body>
+  <body role="document">
   
 
     <div class="document">
@@ -49,37 +49,37 @@
 <dl class="docutils">
 <dt>Ce fichier de configuration permet :</dt>
 <dd><ul class="first last simple">
-<li>de définir de nouveaux fichiers et de nouveau dossiers pour l’arborescence qui
+<li>de définir de nouveaux fichiers et de nouveau dossiers pour l&#8217;arborescence qui
 doit être créer.</li>
-<li>de déterminer l’emplacement des fichiers spécifiques de configuration de Sphinx</li>
+<li>de déterminer l&#8217;emplacement des fichiers spécifiques de configuration de Sphinx</li>
 <li>de définir les fichiers qui seront copier ainsi que le chemin de déstination des
 ces copie</li>
 </ul>
 </dd>
 </dl>
-<p>Ce fichier étant au format JSON, l’ensemble se compose de plusieurs dictionnaire avec
+<p>Ce fichier étant au format JSON, l&#8217;ensemble se compose de plusieurs dictionnaire avec
 un ensemble de clef / valeur.</p>
 <p>Les dictionnaires de fin de chaines ont tous les clef suivantes :</p>
 <blockquote>
 <div><ul class="simple">
-<li>«&nbsp;fileName&nbsp;» : permet de spécifier les nom du fichiers avec son extension. Cette
-clef peut être vide si l’objet traité est un dossier. Cette clef doit être
+<li>&#8220;fileName&#8221; : permet de spécifier les nom du fichiers avec son extension. Cette
+clef peut être vide si l&#8217;objet traité est un dossier. Cette clef doit être
 renseignées par une chaine de type <strong>str</strong>.</li>
-<li>«&nbsp;alterUsage&nbsp;» : Permet de choisir une condition particulière déterminant
-l’utilisation de la clef «&nbsp;path&nbsp;» ou «&nbsp;alterPath&nbsp;». cette clef n’est pour l’instant
-utilisée que dans le cas de l’utilisation de Sphinx. Cette clef peut être vide si
-il n’y a pas de condition alternative. Cette clef doit être renseignées par une
+<li>&#8220;alterUsage&#8221; : Permet de choisir une condition particulière déterminant
+l&#8217;utilisation de la clef &#8220;path&#8221; ou &#8220;alterPath&#8221;. cette clef n&#8217;est pour l&#8217;instant
+utilisée que dans le cas de l&#8217;utilisation de Sphinx. Cette clef peut être vide si
+il n&#8217;y a pas de condition alternative. Cette clef doit être renseignées par une
 chaine de type <strong>str</strong>.</li>
-<li>«&nbsp;path&nbsp;» : permet de rensigner le ou les chemin relatif de destination de l’objet
+<li>&#8220;path&#8221; : permet de rensigner le ou les chemin relatif de destination de l&#8217;objet
 traité. Cette clef est une <strong>liste</strong> qui doit contenir au minimum 1 éléments.</li>
-<li>«&nbsp;alterPath&nbsp;» : Permet d’utiliser des chemins alternatifs. Cet éléments est une <strong>liste</strong>
-Elle peut être vide si l’objet traité ne comprend pas de chemin alternatif.</li>
+<li>&#8220;alterPath&#8221; : Permet d&#8217;utiliser des chemins alternatifs. Cet éléments est une <strong>liste</strong>
+Elle peut être vide si l&#8217;objet traité ne comprend pas de chemin alternatif.</li>
 </ul>
 <ol class="arabic">
 <li><p class="first">_d_txtFileToCopy</p>
 <blockquote>
 <div><p>Ce dictionnaire donne les informations sur chacun des fichiers qui devront être
-copier depuis le dossier «&nbsp;_3-2_sourcesFileToCopy&nbsp;». Chacune des clefs
+copier depuis le dossier &#8220;_3-2_sourcesFileToCopy&#8221;. Chacune des clefs
 correspond au nom (en valeur absolue) du fichier.</p>
 <p>Example :</p>
 <blockquote>
@@ -94,25 +94,25 @@ correspond au nom (en valeur absolue) du fichier.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>«&nbsp;.gitignore&nbsp;»</td>
-<td>«&nbsp;gitignore&nbsp;»</td>
+<tr class="row-even"><td>&#8221;.gitignore&#8221;</td>
+<td>&#8220;gitignore&#8221;</td>
 </tr>
-<tr class="row-odd"><td>«&nbsp;VoLAB.rst&nbsp;»</td>
-<td>«&nbsp;VoLAB&nbsp;»</td>
+<tr class="row-odd"><td>&#8220;VoLAB.rst&#8221;</td>
+<td>&#8220;VoLAB&#8221;</td>
 </tr>
 </tbody>
 </table>
 </div></blockquote>
-<p>Ces clef sont également des dictionnaires. les clef «&nbsp;fileName&nbsp;» et «&nbsp;path&nbsp;» ne
+<p>Ces clef sont également des dictionnaires. les clef &#8220;fileName&#8221; et &#8220;path&#8221; ne
 doivent pas être vide.</p>
 <blockquote>
 <div><ul class="simple">
-<li>Pour ne pas copier l’un des fichiers se trouvant dans le
-dossier «&nbsp;_3-2_sourcesFileToCopy&nbsp;» il faut supprimer le dictionnaire
-correspondant du dictionnaire «&nbsp;_d_txtFileToCopy&nbsp;».</li>
+<li>Pour ne pas copier l&#8217;un des fichiers se trouvant dans le
+dossier &#8220;_3-2_sourcesFileToCopy&#8221; il faut supprimer le dictionnaire
+correspondant du dictionnaire &#8220;_d_txtFileToCopy&#8221;.</li>
 <li>Pour ajouter un fichier, il faut copier la source dans le dossier
-«&nbsp;_3-2_sourcesFileToCopy&nbsp;» et créer le dictionnaire correspondant dans le
-dictionnaire «&nbsp;_d_txtFileToCopy&nbsp;».</li>
+&#8220;_3-2_sourcesFileToCopy&#8221; et créer le dictionnaire correspondant dans le
+dictionnaire &#8220;_d_txtFileToCopy&#8221;.</li>
 </ul>
 </div></blockquote>
 </div></blockquote>
@@ -122,21 +122,21 @@ dictionnaire «&nbsp;_d_txtFileToCopy&nbsp;».</li>
 <div><p>Ce dictionnaire permet de configurer les éléments de Sphinx. Cahque éléments
 est un dictionnaire qui ne doit pas être supprimer.</p>
 <ol class="arabic">
-<li><p class="first">«&nbsp;sphinx&nbsp;»</p>
+<li><p class="first">&#8220;sphinx&#8221;</p>
 <blockquote>
 <div><p>Ce dictionnaire permet de détermine le chemin relatif ou sera installé
-Sphinx. les clefs «&nbsp;alterUsage&nbsp;» et «&nbsp;path&nbsp;» sont renseignées. Si le chemin par
-défaut ne convient pas, il faut modifier le contenu de la clef «&nbsp;path&nbsp;»</p>
+Sphinx. les clefs &#8220;alterUsage&#8221; et &#8220;path&#8221; sont renseignées. Si le chemin par
+défaut ne convient pas, il faut modifier le contenu de la clef &#8220;path&#8221;</p>
 </div></blockquote>
 </li>
-<li><p class="first">«&nbsp;makeBat&nbsp;», «&nbsp;Makefile&nbsp;» et «&nbsp;conf&nbsp;»</p>
+<li><p class="first">&#8220;makeBat&#8221;, &#8220;Makefile&#8221; et &#8220;conf&#8221;</p>
 <blockquote>
-<div><p>Ces dictionnaire permettent de réécrire les fichier «&nbsp;make.bat,
-«&nbsp;Makefile&nbsp;» et «&nbsp;conf.py&nbsp;» qui sont générer lors de l’initialisation de
+<div><p>Ces dictionnaire permettent de réécrire les fichier &#8220;make.bat,
+&#8220;Makefile&#8221; et &#8220;conf.py&#8221; qui sont générer lors de l&#8217;initialisation de
 Sphinx.</p>
-<p>les clefs «&nbsp;v_fileName&nbsp;», «&nbsp;alterUsage&nbsp;» et «&nbsp;path&nbsp;» sont renseignées. Si le
+<p>les clefs &#8220;v_fileName&#8221;, &#8220;alterUsage&#8221; et &#8220;path&#8221; sont renseignées. Si le
 chemin par défaut ne convient pas, il faut modifier le contenu de la clef
-«&nbsp;path&nbsp;».</p>
+&#8220;path&#8221;.</p>
 </div></blockquote>
 </li>
 </ol>
@@ -145,8 +145,8 @@ chemin par défaut ne convient pas, il faut modifier le contenu de la clef
 <li><p class="first">_d_txtFileToCreate</p>
 <blockquote>
 <div><p>Ce dictionnaire permet de créer les fichiers qui correspondent au fonctions
-renseignée dans «&nbsp;createFile.py&nbsp;» chacune des clefs est un dictionnaire don le
-nom correspond à une fonction dans «&nbsp;createFile.py&nbsp;» sans le préfix «&nbsp;f_create&nbsp;».</p>
+renseignée dans &#8220;createFile.py&#8221; chacune des clefs est un dictionnaire don le
+nom correspond à une fonction dans &#8220;createFile.py&#8221; sans le préfix &#8220;f_create&#8221;.</p>
 <p>example :</p>
 <blockquote>
 <div><table border="1" class="docutils">
@@ -161,46 +161,46 @@ nom correspond à une fonction dans «&nbsp;createFile.py&nbsp;» sans le préfi
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>f_createREADME</td>
-<td>«&nbsp;README&nbsp;»</td>
+<td>&#8220;README&#8221;</td>
 </tr>
 <tr class="row-odd"><td>f_createInit</td>
-<td>«&nbsp;Init&nbsp;»</td>
+<td>&#8220;Init&#8221;</td>
 </tr>
 </tbody>
 </table>
 </div></blockquote>
-<p>Les clefs «&nbsp;v_fileName&nbsp;» et «&nbsp;path&nbsp;» doivent être renseignées.</p>
+<p>Les clefs &#8220;v_fileName&#8221; et &#8220;path&#8221; doivent être renseignées.</p>
 <blockquote>
 <div><ul class="simple">
-<li>Pour ne pas créer l’un des fichiers il faut supprimer le dictionnaire
-correspondant du dictionnaire «&nbsp;_d_txtFileToCreate&nbsp;».</li>
+<li>Pour ne pas créer l&#8217;un des fichiers il faut supprimer le dictionnaire
+correspondant du dictionnaire &#8220;_d_txtFileToCreate&#8221;.</li>
 <li>Pour ajouter un fichier à créer, il faut créer la fonction
-correspondante dans «&nbsp;createFile.py&nbsp;» et créer le dictionnaire
-correspondant dans le dictionnaire «&nbsp;_d_txtFileToCreate&nbsp;».</li>
+correspondante dans &#8220;createFile.py&#8221; et créer le dictionnaire
+correspondant dans le dictionnaire &#8220;_d_txtFileToCreate&#8221;.</li>
 </ul>
 </div></blockquote>
 </div></blockquote>
 </li>
 <li><p class="first">_d_arboDir</p>
 <blockquote>
-<div><p>Ce dictionnaire permet de créer l’ensemble de dossier de l’arboresence. Chaque
+<div><p>Ce dictionnaire permet de créer l&#8217;ensemble de dossier de l&#8217;arboresence. Chaque
 clef est un dictionnaire représentant un dossier à créer. Le nom des clef doit
-être renseigner mais n’est pas utiliser spécifiquement. Elle est juste
-utilisée pour l’itteration du dictionnaire «&nbsp;_d_arboDir&nbsp;» pour chaque clef le
-dossier renseigner dans «&nbsp;path&nbsp;» sera créer.</p>
+être renseigner mais n&#8217;est pas utiliser spécifiquement. Elle est juste
+utilisée pour l&#8217;itteration du dictionnaire &#8220;_d_arboDir&#8221; pour chaque clef le
+dossier renseigner dans &#8220;path&#8221; sera créer.</p>
 <ul class="simple">
 <li>Pour ajouter un nouveau dossier, il faut créer un nouveau dictionnaire dans
-«&nbsp;_d_arboDir&nbsp;» et renseigner sa clef «&nbsp;path&nbsp;» (chemin relatif).</li>
-<li>Pour supprimer un dossier de l’arborescence à créer, il faut supprimer son
-dictionnaire de «&nbsp;_d_arboDir&nbsp;».</li>
+&#8220;_d_arboDir&#8221; et renseigner sa clef &#8220;path&#8221; (chemin relatif).</li>
+<li>Pour supprimer un dossier de l&#8217;arborescence à créer, il faut supprimer son
+dictionnaire de &#8220;_d_arboDir&#8221;.</li>
 </ul>
 </div></blockquote>
 </li>
 <li><p class="first">_d_gitCFG</p>
 <blockquote>
 <div><p>Ce dictionnaire permet de détermine le chemin relatif ou sera installé
-GIT. la clef «&nbsp;path&nbsp;» est renseignée. Si le chemin par défaut ne convient pas,
-il faut modifier le contenu de la clef «&nbsp;path&nbsp;».</p>
+GIT. la clef &#8220;path&#8221; est renseignée. Si le chemin par défaut ne convient pas,
+il faut modifier le contenu de la clef &#8220;path&#8221;.</p>
 </div></blockquote>
 </li>
 </ol>
@@ -246,7 +246,7 @@ il faut modifier le contenu de la clef «&nbsp;path&nbsp;».</p>
       &copy;2017, Poltergeist42.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.5</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |

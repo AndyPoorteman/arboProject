@@ -1,6 +1,6 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
   <head>
@@ -36,7 +36,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body>
+  <body role="document">
   
 
     <div class="document">
@@ -60,7 +60,7 @@
 </tr>
 <tr class="field-odd field"><th class="field-name">Autheur:</th><td class="field-body"><a class="reference external" href="https://github.com/poltergeist42">Poltergeist42</a></td>
 </tr>
-<tr class="field-even field"><th class="field-name">Version:</th><td class="field-body">20170808</td>
+<tr class="field-even field"><th class="field-name">Version:</th><td class="field-body">20171024</td>
 </tr>
 </tbody>
 </table>
@@ -101,18 +101,18 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Projet:</th><td class="field-body"><p class="first">Ce projet permet de créer une arboressence de dossier et de sous
-dossier nécessaires à chaque nouveau projet. Ainsi que l’ensemble
-des fichiers qui y son ratachés. Il permet également d’initialiser
-le dépôt Git et l’outil de documentation Sphinx.</p>
+dossier nécessaires à chaque nouveau projet. Ainsi que l&#8217;ensemble
+des fichiers qui y son ratachés. Il permet également d&#8217;initialiser
+le dépôt Git et l&#8217;outil de documentation Sphinx.</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Fichiers:</th><td class="field-body"><p class="first">arboProject.py : c’est le programme pricipale. On peux le lancer
+<tr class="field-even field"><th class="field-name">Fichiers:</th><td class="field-body"><p class="first">arboProject.py : c&#8217;est le programme pricipale. On peux le lancer
 par la commande :</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">arboProject</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 <p>ou utiliser une ou plusieurs options disponibles. Voir les options
-disponibles avec “–help”</p>
+disponibles avec &#8216;&#8211;help&#8217;</p>
 <div class="last highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">arboProject</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">help</span>
 
 <span class="n">ou</span>
@@ -157,14 +157,14 @@ disponibles avec “–help”</p>
 <dl class="class">
 <dt id="_3_software.arboProject.C_Arbo">
 <em class="property">class </em><code class="descclassname">_3_software.arboProject.</code><code class="descname">C_Arbo</code><a class="headerlink" href="#_3_software.arboProject.C_Arbo" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Class permettan la Creation d’une arboressence standardisée
+<dd><p>Class permettan la Creation d&#8217;une arboressence standardisée
 pour chaque nouveau projet</p>
 <dl class="method">
 <dt id="_3_software.arboProject.C_Arbo.f_chkIfDir">
 <code class="descname">f_chkIfDir</code><span class="sig-paren">(</span><em>v_dir</em>, <em>v_path=None</em><span class="sig-paren">)</span><a class="headerlink" href="#_3_software.arboProject.C_Arbo.f_chkIfDir" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Retourne Vrai si le dossier existe et Faux si il n’éxiste pas.</p>
+<dd><p>Retourne Vrai si le dossier existe et Faux si il n&#8217;éxiste pas.</p>
 <ul class="simple">
-<li>Si aucun chemin n’est passé à “v_path”, c’est dans le répertoire courant
+<li>Si aucun chemin n&#8217;est passé à &#8216;v_path&#8217;, c&#8217;est dans le répertoire courant
 que la recherche serat effectuée.</li>
 </ul>
 </dd></dl>
@@ -172,9 +172,9 @@ que la recherche serat effectuée.</li>
 <dl class="method">
 <dt id="_3_software.arboProject.C_Arbo.f_chkIfFile">
 <code class="descname">f_chkIfFile</code><span class="sig-paren">(</span><em>v_file</em>, <em>v_path=None</em><span class="sig-paren">)</span><a class="headerlink" href="#_3_software.arboProject.C_Arbo.f_chkIfFile" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Retourne Vrai si le fichier existe et Faux si il n’éxiste pas.</p>
+<dd><p>Retourne Vrai si le fichier existe et Faux si il n&#8217;éxiste pas.</p>
 <ul class="simple">
-<li>Si aucun chemin n’est passé à “v_path”, c’est dans le répertoire courant
+<li>Si aucun chemin n&#8217;est passé à &#8216;v_path&#8217;, c&#8217;est dans le répertoire courant
 que la recherche serat effectuée.</li>
 </ul>
 </dd></dl>
@@ -183,39 +183,39 @@ que la recherche serat effectuée.</li>
 <dt id="_3_software.arboProject.C_Arbo.f_copyFile">
 <code class="descname">f_copyFile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_3_software.arboProject.C_Arbo.f_copyFile" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Permet de copier tous les fichiers qui se trouvent dans le dossier
-“_3-2_sourcesFileToCopy” vers leur déstination dans la nouvelle arborescence</p>
+&#8216;_3-2_sourcesFileToCopy&#8217; vers leur déstination dans la nouvelle arborescence</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="_3_software.arboProject.C_Arbo.f_createMakeBat">
 <code class="descname">f_createMakeBat</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#_3_software.arboProject.C_Arbo.f_createMakeBat" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Retourne les informations pour la création du fichiers “make.bat”.
+<dd><p>Retourne les informations pour la création du fichiers &#8216;make.bat&#8217;.
 Si le chemin de destination est différent du dossier par défaut
-(“….webDoc”), il faut passé un quatrième argument sous la forme d’une
+(&#8216;....webDoc&#8217;), il faut passé un quatrième argument sous la forme d&#8217;une
 chaine de caratère représentant le chemin relatif vers le nouveau dossier de
 destination.</p>
-<p>Cette Méthode est appellée par : “f_sphinxInit”. Ce fichier faisant parti des
-fichiers de configuration de Sphinx, il n’est pas générer depuis “createFile”.</p>
+<p>Cette Méthode est appellée par : &#8216;f_sphinxInit&#8217;. Ce fichier faisant parti des
+fichiers de configuration de Sphinx, il n&#8217;est pas générer depuis &#8216;createFile&#8217;.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="_3_software.arboProject.C_Arbo.f_createMakefile">
 <code class="descname">f_createMakefile</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#_3_software.arboProject.C_Arbo.f_createMakefile" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Retourne les informations pour la création du fichiers “Makefile”.
+<dd><p>Retourne les informations pour la création du fichiers &#8216;Makefile&#8217;.
 Si le chemin de destination est différent du dossier par défaut
-(“….webDoc”), il faut passé un quatrième argument sous la forme d’une
+(&#8216;....webDoc&#8217;), il faut passé un quatrième argument sous la forme d&#8217;une
 chaine de caratère représentant le chemin relatif vers le nouveau dossier de
 destination.</p>
-<p>Cette Méthode est appellée par : “f_sphinxInit”. Ce fichier faisant parti des
-fichiers de configuration de Sphinx, il n’est pas générer depuis “createFile”.</p>
+<p>Cette Méthode est appellée par : &#8216;f_sphinxInit&#8217;. Ce fichier faisant parti des
+fichiers de configuration de Sphinx, il n&#8217;est pas générer depuis &#8216;createFile&#8217;.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="_3_software.arboProject.C_Arbo.f_dir">
 <code class="descname">f_dir</code><span class="sig-paren">(</span><em>*t_exeptArgs</em><span class="sig-paren">)</span><a class="headerlink" href="#_3_software.arboProject.C_Arbo.f_dir" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Creation de la liste des dossiers et de leur sous dossiers.</p>
-<p>Ces dossiers sont créer à partir du dictionnaire “_d_arboDir” qui est extrait
-du fichier “defArbo.json”.</p>
+<p>Ces dossiers sont créer à partir du dictionnaire &#8216;_d_arboDir&#8217; qui est extrait
+du fichier &#8216;defArbo.json&#8217;.</p>
 </dd></dl>
 
 <dl class="method">
@@ -227,14 +227,14 @@ du fichier “defArbo.json”.</p>
 <dl class="method">
 <dt id="_3_software.arboProject.C_Arbo.f_getAuthor">
 <code class="descname">f_getAuthor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_3_software.arboProject.C_Arbo.f_getAuthor" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Retourne le nom contenu par “_v_author”.
-Par défaut se nom est “Poltergeist42”</p>
+<dd><p>Retourne le nom contenu par &#8216;_v_author&#8217;.
+Par défaut se nom est &#8216;Poltergeist42&#8217;</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="_3_software.arboProject.C_Arbo.f_getProjectName">
 <code class="descname">f_getProjectName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_3_software.arboProject.C_Arbo.f_getProjectName" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Permet de récupérer le nom du projet contenu dans “_v_projectName”</p>
+<dd><p>Permet de récupérer le nom du projet contenu dans &#8216;_v_projectName&#8217;</p>
 </dd></dl>
 
 <dl class="method">
@@ -246,27 +246,27 @@ Par défaut se nom est “Poltergeist42”</p>
 <dl class="method">
 <dt id="_3_software.arboProject.C_Arbo.f_loopFile">
 <code class="descname">f_loopFile</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#_3_software.arboProject.C_Arbo.f_loopFile" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Permet de parcourrir “_d_txtFileToCreate” pour créer les fichiers textes
+<dd><p>Permet de parcourrir &#8216;_d_txtFileToCreate&#8217; pour créer les fichiers textes
 associers à chaque clef.</p>
-<p>Ces fichiers sont créer à partir du dictionnaire “_d_txtFileToCreate” qui est
-extrait du fichier “defArbo.json”.</p>
+<p>Ces fichiers sont créer à partir du dictionnaire &#8216;_d_txtFileToCreate&#8217; qui est
+extrait du fichier &#8216;defArbo.json&#8217;.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="_3_software.arboProject.C_Arbo.f_setAuthor">
 <code class="descname">f_setAuthor</code><span class="sig-paren">(</span><em>v_author</em><span class="sig-paren">)</span><a class="headerlink" href="#_3_software.arboProject.C_Arbo.f_setAuthor" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Permet de définir un Autheur pour le projet. Par défaut cette valeur est fixé
-à “Poltergeist42”</p>
+à &#8216;Poltergeist42&#8217;</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="_3_software.arboProject.C_Arbo.f_setChangeConf">
 <code class="descname">f_setChangeConf</code><span class="sig-paren">(</span><em>v_relativPath=False</em><span class="sig-paren">)</span><a class="headerlink" href="#_3_software.arboProject.C_Arbo.f_setChangeConf" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Permet de modifier le fichiers “conf.py” qui est générer par Sphinx.
-Le chemin relatif par défaut est : “../../”.
-Cette valeur est a modifier (v_relativPath)si l’arborescence utilisée est
-différente de l’arborescence par défaut.</p>
-<p>Cette Méthode est appellée par : “f_sphinxInit”.</p>
+<dd><p>Permet de modifier le fichiers &#8216;conf.py&#8217; qui est générer par Sphinx.
+Le chemin relatif par défaut est : &#8216;../../&#8217;.
+Cette valeur est a modifier (v_relativPath)si l&#8217;arborescence utilisée est
+différente de l&#8217;arborescence par défaut.</p>
+<p>Cette Méthode est appellée par : &#8216;f_sphinxInit&#8217;.</p>
 </dd></dl>
 
 <dl class="method">
@@ -278,22 +278,22 @@ différente de l’arborescence par défaut.</p>
 <dl class="method">
 <dt id="_3_software.arboProject.C_Arbo.f_setToggleGitInit">
 <code class="descname">f_setToggleGitInit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_3_software.arboProject.C_Arbo.f_setToggleGitInit" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Permet de définir “_v_gitInit” à Vrai ou Faux.
-L’état est inversé à chaque appel</p>
+<dd><p>Permet de définir &#8216;_v_gitInit&#8217; à Vrai ou Faux.
+L&#8217;état est inversé à chaque appel</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="_3_software.arboProject.C_Arbo.f_setToggleSphinxInit">
 <code class="descname">f_setToggleSphinxInit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_3_software.arboProject.C_Arbo.f_setToggleSphinxInit" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Permet de définir “_v_sphinxInit” à Vrai ou Faux.
-L’état est inversé à chaque appel</p>
+<dd><p>Permet de définir &#8216;_v_sphinxInit&#8217; à Vrai ou Faux.
+L&#8217;état est inversé à chaque appel</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="_3_software.arboProject.C_Arbo.f_setToggleVerbose">
 <code class="descname">f_setToggleVerbose</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_3_software.arboProject.C_Arbo.f_setToggleVerbose" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Permet de définir “_v_gitInit” à Vrai ou Faux.
-L’état est inversé à chaque appel</p>
+<dd><p>Permet de définir &#8216;_v_gitInit&#8217; à Vrai ou Faux.
+L&#8217;état est inversé à chaque appel</p>
 </dd></dl>
 
 <dl class="method">
@@ -306,13 +306,13 @@ L’état est inversé à chaque appel</p>
 <dt id="_3_software.arboProject.C_Arbo.f_testFunc">
 <code class="descname">f_testFunc</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#_3_software.arboProject.C_Arbo.f_testFunc" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Cette méthode permet de tester méthode pour éviter de devoir modifier la
-séquence exécutée dans le “main. Elle s’active avec l’option -t ou –test.</p>
+séquence exécutée dans le &#8216;main. Elle s&#8217;active avec l&#8217;option -t ou &#8211;test.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="_3_software.arboProject.C_Arbo.f_wFile">
 <code class="descname">f_wFile</code><span class="sig-paren">(</span><em>v_fileName</em>, <em>v_txtData</em><span class="sig-paren">)</span><a class="headerlink" href="#_3_software.arboProject.C_Arbo.f_wFile" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Permet de créer les fichiers texte dans l’arborescence du projet</p>
+<dd><p>Permet de créer les fichiers texte dans l&#8217;arborescence du projet</p>
 </dd></dl>
 
 </dd></dl>
@@ -366,7 +366,7 @@ séquence exécutée dans le “main. Elle s’active avec l’option -t ou –t
       &copy;2017, Poltergeist42.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.5</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |

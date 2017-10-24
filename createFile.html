@@ -1,6 +1,6 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
   <head>
@@ -36,7 +36,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body>
+  <body role="document">
   
 
     <div class="document">
@@ -101,15 +101,15 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Projet:</th><td class="field-body"><p class="first">Ce projet permet de créer une arboressence de dossier et de sous
-dossier nécessaires à chaque nouveau projet. Ainsi que l’ensemble
-des fichiers qui y son ratachés. Il permet également d’initialiser
-le dépôt Git et l’outil de documentation Sphinx.</p>
+dossier nécessaires à chaque nouveau projet. Ainsi que l&#8217;ensemble
+des fichiers qui y son ratachés. Il permet également d&#8217;initialiser
+le dépôt Git et l&#8217;outil de documentation Sphinx.</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Fichiers:</th><td class="field-body"><p class="first">createFile.py regroupe le corps de l’ensemble des fichiers qui
+<tr class="field-even field"><th class="field-name">Fichiers:</th><td class="field-body"><p class="first">createFile.py regroupe le corps de l&#8217;ensemble des fichiers qui
 doivent être créés par défaut avec chaque nouveau projet.</p>
 <p class="last"><strong>N.B</strong> : Les fichiers qui sont générer ici sont optionnels et
-n’empèche pas la création de l’arborescence ou la configuration
+n&#8217;empèche pas la création de l&#8217;arborescence ou la configuration
 de Sphinx.</p>
 </td>
 </tr>
@@ -148,13 +148,13 @@ de Sphinx.</p>
 <dl class="function">
 <dt id="_3_software.createFile.f_createInit">
 <code class="descclassname">_3_software.createFile.</code><code class="descname">f_createInit</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#_3_software.createFile.f_createInit" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Retourne les informations pour la création du fichiers “__init__.py”</p>
+<dd><p>Retourne les informations pour la création du fichiers &#8216;__init__.py&#8217;</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_3_software.createFile.f_createREADME">
 <code class="descclassname">_3_software.createFile.</code><code class="descname">f_createREADME</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#_3_software.createFile.f_createREADME" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Retourne les informations pour la création du fichiers “README.rst”</p>
+<dd><p>Retourne les informations pour la création du fichiers &#8216;README.rst&#8217;</p>
 </dd></dl>
 
 </div>
@@ -170,22 +170,22 @@ de Sphinx.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">f_createREADME</span>
 </pre></div>
 </div>
-<p>Le nom du fichier correspond à une clef du dictionnaire «&nbsp;_d_txtFileToCreate{}&nbsp;»
-extrait depuis le fichier de configuration «&nbsp;defArbo.json&nbsp;». Cette est elle même un
+<p>Le nom du fichier correspond à une clef du dictionnaire &#8220;_d_txtFileToCreate{}&#8221;
+extrait depuis le fichier de configuration &#8220;defArbo.json&#8221;. Cette est elle même un
 dictionnaire.</p>
 </div></blockquote>
 </li>
-<li><p class="first">Chaque fonction reçoit 3 argument qui doivent être présenter dans l’ordre suivant :</p>
+<li><p class="first">Chaque fonction reçoit 3 argument qui doivent être présenter dans l&#8217;ordre suivant :</p>
 <blockquote>
 <div><ul class="simple">
-<li>v_projectName reçoit «&nbsp;args[0]&nbsp;». C’est le nom du projet qui est fournie par
-l’utilisateur au lancement de l’application.</li>
-<li>v_fileName reçoit args[1]. c’est le nom complet (avec son extension) du fichier
-à créer. Ce nom est récupérer depuis la clef «&nbsp;v_fileName&nbsp;» du dictionnaire
-correspondant au fichier dans le fichier de configuration «&nbsp;defArbo.json&nbsp;».</li>
-<li>v_filePath reçoit args[2]. c’est le chemin relatif du fichier
-à créer. Ce chemin est récupérer depuis la clef «&nbsp;v_filePath&nbsp;» du dictionnaire
-correspondant au fichier dans le fichier de configuration «&nbsp;defArbo.json&nbsp;».</li>
+<li>v_projectName reçoit &#8220;args[0]&#8221;. C&#8217;est le nom du projet qui est fournie par
+l&#8217;utilisateur au lancement de l&#8217;application.</li>
+<li>v_fileName reçoit args[1]. c&#8217;est le nom complet (avec son extension) du fichier
+à créer. Ce nom est récupérer depuis la clef &#8220;v_fileName&#8221; du dictionnaire
+correspondant au fichier dans le fichier de configuration &#8220;defArbo.json&#8221;.</li>
+<li>v_filePath reçoit args[2]. c&#8217;est le chemin relatif du fichier
+à créer. Ce chemin est récupérer depuis la clef &#8220;v_filePath&#8221; du dictionnaire
+correspondant au fichier dans le fichier de configuration &#8220;defArbo.json&#8221;.</li>
 </ul>
 </div></blockquote>
 </li>
@@ -193,12 +193,12 @@ correspondant au fichier dans le fichier de configuration «&nbsp;defArbo.json&n
 <blockquote>
 <div><p>Les données retournées par les méthodes sont :</p>
 <ul>
-<li><p class="first">v_fqfn : c’est le regroupement des 2 variables «&nbsp;v_filePath&nbsp;» et «&nbsp;v_fileName&nbsp;»</p>
+<li><p class="first">v_fqfn : c&#8217;est le regroupement des 2 variables &#8220;v_filePath&#8221; et &#8220;v_fileName&#8221;</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">v_fqfn</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{v_filePath}</span><span class="s2">/</span><span class="si">{v_fileName}</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first">v_txtData : C’est le corps du fichiers. Si le fichiers est vide, mettre cette
+<li><p class="first">v_txtData : C&#8217;est le corps du fichiers. Si le fichiers est vide, mettre cette
 varriable à False. Si le fichiers doit contenir du texte, il faut le formater
 dans une chaine de caractère (type str)</p>
 </li>
@@ -262,7 +262,7 @@ cette ordre)</p>
       &copy;2017, Poltergeist42.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.5</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
