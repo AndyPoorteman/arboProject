@@ -415,9 +415,9 @@ class C_Arbo(object) :
                         elif l[:-1] == "# import sys" :
                             tf.write("import sys\n")
                         elif l[:-1] == "# sys.path.insert(0, os.path.abspath('.'))" :
-                            tf.write(f"sys.path.insert(0, os.path.abspath(\"{v_relativPath}\"))")
+                            tf.write(f"sys.path.insert(0, os.path.abspath(\"{v_relativPath}\"))\n")
                         elif l[:-1] == "exclude_patterns = []" :
-                            tf.write("exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']")
+                            tf.write("exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']\n")
                         else :
                             tf.write(l)
 
