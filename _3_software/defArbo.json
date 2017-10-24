@@ -18,6 +18,14 @@
                 "/project/_1_userDoc/source"
             ]
         },
+        "gh-pages" : {
+            "fileName"  : "gh-pages.py",
+            "alterUsage": "sphinx",
+            "path"      : [
+                "/webDoc"
+            ],
+            "alterPath" : []
+        },
         "includeMe" : {
             "fileName"  : "includeMe.rst",
             "alterUsage": "sphinx",
