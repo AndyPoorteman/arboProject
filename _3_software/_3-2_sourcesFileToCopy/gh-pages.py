@@ -9,7 +9,7 @@ Infos
    :Projet:             arboProject
    :Nom du fichier:     gh-pages.py
    :Autheur:            `Poltergeist42 <https://github.com/poltergeist42>`_
-   :Version:            20171024
+   :Version:            20171026
 
 ####
 
@@ -53,7 +53,7 @@ lexique
 
 """
 
-import os, argparse
+import os, argparse, time
 
 
 def main() :
@@ -65,16 +65,15 @@ def main() :
     
     # i_arbo = C_Arbo()
     
-    v_url = input( "Entrez l'url du dépôt distant : )
+    v_url = input( "Entrez l'url du dépôt distant : " )
     
     os.system( f"git clone {v_url} html" )
-    os.system( "cd html" )
+    time.sleep(2)
+    os.chdir( ".\html" )
     os.system( "git branch gh-pages" )
     os.system( "git symbolic-ref HEAD refs/heads/gh-pages" )
     os.system( "del .git\index" )
     os.system( "git clean -fdx" )
-    
-
     
 if __name__ == '__main__':
     main()
