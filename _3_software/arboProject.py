@@ -9,7 +9,7 @@ Infos
    :Projet:             arboProject
    :Nom du fichier:     arboProject.py
    :Autheur:            `Poltergeist42 <https://github.com/poltergeist42>`_
-   :Version:            20171024
+   :Version:            201800203
 
 ####
 
@@ -292,6 +292,8 @@ class C_Arbo(object) :
             for i in l_file :
             
                 if i[0] == '.' : i = i[1:]
+                if i[-2]== '.' : i = i[:-2]
+                if i[-3]== '.' : i = i[:-3]
                 if i[-4]== '.' : i = i[:-4]
                 
                 fileName = alterUsage = path = alterPath = None

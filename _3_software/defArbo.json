@@ -1,5 +1,13 @@
 {
     "_d_txtFileToCopy": {
+        "gh_pages" : {
+            "fileName"  : "gh-pages.py",
+            "alterUsage": "sphinx",
+            "path"      : [
+                "/webDoc"
+            ],
+            "alterPath" : []
+        },
         "gitignore": {
             "fileName": ".gitignore",
             "alterUsage": "",
@@ -17,14 +25,6 @@
             "alterPath" : [
                 "/project/_1_userDoc/source"
             ]
-        },
-        "gh-pages" : {
-            "fileName"  : "gh-pages.py",
-            "alterUsage": "sphinx",
-            "path"      : [
-                "/webDoc"
-            ],
-            "alterPath" : []
         },
         "includeMe" : {
             "fileName"  : "includeMe.rst",
@@ -121,6 +121,14 @@
             "alterUsage": "",
             "path": [
                "/webDoc"
+            ],
+            "alterPath" : []
+        },
+        "trash_v" : {
+            "v_fileName" : "",
+            "alterUsage": "",
+            "path": [
+               "/trash_v"
             ],
             "alterPath" : []
         },
