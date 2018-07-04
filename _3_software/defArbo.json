@@ -1,7 +1,7 @@
 {
     "_d_txtFileToCopy": {
         "gh_pages" : {
-            "fileName"  : "gh-pages.py",
+            "fileName"  : "gh_pages.py",
             "alterUsage": "sphinx",
             "path"      : [
                 "/webDoc"
