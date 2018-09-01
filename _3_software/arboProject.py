@@ -9,7 +9,7 @@ Infos
    :Projet:             arboProject
    :Nom du fichier:     arboProject.py
    :Auteur:            `Poltergeist42 <https://github.com/poltergeist42>`_
-   :Version:            201800203
+   :Version:            20180901
 
 ####
 
@@ -420,6 +420,8 @@ class C_Arbo(object) :
                             tf.write(f"sys.path.insert(0, os.path.abspath(\"{v_relativPath}\"))\n")
                         elif l[:-1] == "exclude_patterns = []" :
                             tf.write("exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']\n")
+                        elif l[:-1] == "html_theme = 'alabaster'" :
+                            tf.write("html_theme = 'classic'\n")
                         else :
                             tf.write(l)
 
