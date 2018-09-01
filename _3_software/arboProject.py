@@ -8,7 +8,7 @@ Infos
 
    :Projet:             arboProject
    :Nom du fichier:     arboProject.py
-   :Autheur:            `Poltergeist42 <https://github.com/poltergeist42>`_
+   :Auteur:            `Poltergeist42 <https://github.com/poltergeist42>`_
    :Version:            201800203
 
 ####
@@ -18,20 +18,20 @@ Infos
 
 ####
 
-    :dev language:      Python 3.6
-    :framework:         
+    :dev langage:      Python 3.6
+    :Framework:         
     
 ####
 
-Déscriptif
+Descriptif
 ==========
 
-    :Projet:            Ce projet permet de créer une arboressence de dossier et de sous
-                        dossier nécessaires à chaque nouveau projet. Ainsi que l'ensemble
-                        des fichiers qui y son ratachés. Il permet également d'initialiser
+    :Projet:            Ce projet permet de créer une arborescence de dossier et de sous
+                        dossiers nécessaires à chaque nouveau projet. Ainsi que l'ensemble
+                        des fichiers qui y sont rattachés. Il permet également d'initialiser
                         le dépôt Git et l'outil de documentation Sphinx.
                         
-    :Fichiers:          arboProject.py : c'est le programme pricipale. On peux le lancer
+    :Fichiers:          arboProject.py : c'est le programme principal. On peut le lancer
                         par la commande : ::
                         
                             python arboProject.py
@@ -63,7 +63,7 @@ lexique
 
 """
 
-#################### Taille maximum des commentaires (90 caracteres)######################
+#################### Taille maximum des commentaires (90 caractères)######################
 
 import os
 import shutil
@@ -79,14 +79,14 @@ except ModuleNotFoundError :
 
 class C_Arbo(object) :
     """ 
-    Class permettan la Creation d'une arboressence standardisée
+    Class permettant la création d'une arborescence standardisée
     pour chaque nouveau projet
     """
     def __init__(self) :
         ## Initialisation des chemins par défaut
         self.v_localDir     = os.getcwd()
-                                # os.getcwd() : permet de recuperer le chemin
-                                # du repertoire local
+                                # os.getcwd() : permet de récupérer le chemin
+                                # du répertoire local
         self.v_sourceDir    = os.path.normpath(
             "{}/_3-2_sourcesFileToCopy".format( self.v_localDir ))
             
@@ -99,7 +99,7 @@ class C_Arbo(object) :
         self._v_author      = "Poltergeist42"
         
         
-        ## Extraction des différent dictionnaire depuis le fichiers 'defArbo.json'
+        ## Extraction des différents dictionnaires depuis le fichiers 'defArbo.json'
         with open("defArbo.json", 'r', encoding = "utf-8") as f :
             self._d_defArboJson = json.load(f)
         
@@ -129,7 +129,7 @@ class C_Arbo(object) :
 ####
 
     def f_setAuthor( self, v_author) :
-        """ Permet de définir un Autheur pour le projet. Par défaut cette valeur est fixé
+        """ Permet de définir un Auteur pour le projet. Par défaut cette valeur est fixée
             à 'Poltergeist42'
         """
         self._v_author = v_author
@@ -149,7 +149,7 @@ class C_Arbo(object) :
 ####
                             
     def f_dirInit( self ) :
-        """ recuperation du repertoire de travail """
+        """ récupération du répertoire de travail """
         v_localWorkDir = input("Entrez le chemin absolu du dossier projet : ")
         self.v_localDir = os.path.normpath(v_localWorkDir)
         os.chdir(self.v_localDir)
@@ -158,9 +158,9 @@ class C_Arbo(object) :
 ####
         
     def f_dir(self, *t_exeptArgs) :
-        """ Creation de la liste des dossiers et de leur sous dossiers.
+        """ Création de la liste des dossiers et de leur sous dossiers.
         
-            Ces dossiers sont créer à partir du dictionnaire '_d_arboDir' qui est extrait
+            Ces dossiers sont créés à partir du dictionnaire '_d_arboDir' qui est extrait
             du fichier 'defArbo.json'.
         """
         ## Verbose
@@ -179,13 +179,13 @@ class C_Arbo(object) :
                     print( f"\t* Création du dossier : {self._d_arboDir[k]['path'][0]}")
                     
                 os.makedirs(os.path.normpath(v_target), mode=0o777, exist_ok=True)
-                    # os.makedirs() : Permet de creer le repertoire indiquer par
-                    # la variable v_target. Si les repertoires parents n'existent
-                    # pas, os.makedirs les creera automatiquement
+                    # os.makedirs() : Permet de créer le répertoire indiquer par
+                    # la variable v_target. Si les répertoires parents n'existent
+                    # pas, os.makedirs les créera automatiquement
                     #
                     # os.path.normpath() permet de normaliser la syntaxe du
                     # chemin indiquer par v_target.
-                    # N.B : pour windows, les "\\" et '/' seront remplacer
+                    # N.B : pour Windows, les "\\" et '/' seront remplacer
                     # par '\'
         
         ## Verbose
@@ -195,10 +195,10 @@ class C_Arbo(object) :
 ####
                             
     def f_chkIfDir(self, v_dir, v_path=None) :
-        """ Retourne Vrai si le dossier existe et Faux si il n'éxiste pas.
+        """ Retourne Vrai si le dossier existe et Faux s’il n'existe pas.
         
             - Si aucun chemin n'est passé à 'v_path', c'est dans le répertoire courant
-              que la recherche serat effectuée.
+              que la recherche sera effectuée.
         """
         if not v_path :
             v_path = '.'
@@ -216,10 +216,10 @@ class C_Arbo(object) :
 ####
                             
     def f_chkIfFile(self, v_file, v_path=None) :
-        """ Retourne Vrai si le fichier existe et Faux si il n'éxiste pas.
+        """ Retourne Vrai si le fichier existe et Faux s’il n'existe pas.
         
             - Si aucun chemin n'est passé à 'v_path', c'est dans le répertoire courant
-              que la recherche serat effectuée.
+              que la recherche sera effectuée.
         """
         if not v_path :
             v_path = '.'
@@ -237,10 +237,10 @@ class C_Arbo(object) :
 ####
     
     def f_loopFile(self, *args, **kwargs) :
-        """ Permet de parcourrir '_d_txtFileToCreate' pour créer les fichiers textes
-        associers à chaque clef.
+        """ Permet de parcourir '_d_txtFileToCreate' pour créer les fichiers textes
+        associés à chaque clef.
         
-        Ces fichiers sont créer à partir du dictionnaire '_d_txtFileToCreate' qui est
+        Ces fichiers sont créés à partir du dictionnaire '_d_txtFileToCreate' qui est
         extrait du fichier 'defArbo.json'.
         """
         ## Verbose
@@ -281,7 +281,7 @@ class C_Arbo(object) :
 
     def f_copyFile(self) :
         """ Permet de copier tous les fichiers qui se trouvent dans le dossier
-            '_3-2_sourcesFileToCopy' vers leur déstination dans la nouvelle arborescence
+            '_3-2_sourcesFileToCopy' vers leur destination dans la nouvelle arborescence
         """
         ## Verbose
         if self._v_verbose :
@@ -397,10 +397,10 @@ class C_Arbo(object) :
     def f_setChangeConf( self, v_relativPath = False ) :
         """ Permet de modifier le fichiers 'conf.py' qui est générer par Sphinx.
             Le chemin relatif par défaut est : '../../'.
-            Cette valeur est a modifier (v_relativPath)si l'arborescence utilisée est
+            Cette valeur est à modifier (v_relativPath)si l'arborescence utilisée est
             différente de l'arborescence par défaut. 
             
-            Cette Méthode est appellée par : 'f_sphinxInit'.
+            Cette Méthode est appelée par : 'f_sphinxInit'.
         """
         if not v_relativPath :
             v_relativPath = "../../"
@@ -437,12 +437,12 @@ class C_Arbo(object) :
     def f_createMakeBat(self, *args, **kwargs) :
         """ Retourne les informations pour la création du fichiers 'make.bat'.
             Si le chemin de destination est différent du dossier par défaut
-            ('..\..\webDoc\'), il faut passé un quatrième argument sous la forme d'une
-            chaine de caratère représentant le chemin relatif vers le nouveau dossier de
+            ('..\..\webDoc\'), il faut passer un quatrième argument sous la forme d'une
+            chaine de caractère représentant le chemin relatif vers le nouveau dossier de
             destination.
         
-            Cette Méthode est appellée par : 'f_sphinxInit'. Ce fichier faisant parti des
-            fichiers de configuration de Sphinx, il n'est pas générer depuis 'createFile'.
+            Cette Méthode est appelée par : 'f_sphinxInit'. Ce fichier faisant parti des
+            fichiers de configuration de Sphinx, il n'est pas généré depuis 'createFile'.
         """
         if args :
             v_projectName   = args[0]
@@ -478,7 +478,7 @@ class C_Arbo(object) :
             "    exit /b 1\n"\
             ")\n\n"\
             "%SPHINXBUILD% -M %1 %SOURCEDIR% %BUILDDIR% %SPHINXOPTS%\n"\
-            "rem reconstruction de la branch \"gh-pages\" et mise a jour du depot distant\n"\
+            "rem reconstruction de la branch \"gh-pages\" et mise à jour du dépôt distant\n"\
             "cd %BUILDDIR%\\html\n"\
             "git add .\n"\
             "git commit -m \"rebuilt docs\"\n"\
@@ -496,12 +496,12 @@ class C_Arbo(object) :
     def f_createMakefile(self, *args, **kwargs) :
         """ Retourne les informations pour la création du fichiers 'Makefile'.
             Si le chemin de destination est différent du dossier par défaut
-            ('..\..\webDoc\'), il faut passé un quatrième argument sous la forme d'une
-            chaine de caratère représentant le chemin relatif vers le nouveau dossier de
+            ('..\..\webDoc\'), il faut passer un quatrième argument sous la forme d'une
+            chaine de caractère représentant le chemin relatif vers le nouveau dossier de
             destination.
         
-            Cette Méthode est appellée par : 'f_sphinxInit'. Ce fichier faisant parti des
-            fichiers de configuration de Sphinx, il n'est pas générer depuis 'createFile'.        """
+            Cette Méthode est appelée par : 'f_sphinxInit'. Ce fichier faisant parti des
+            fichiers de configuration de Sphinx, il n'est pas généré depuis 'createFile'.        """
         if args :
             v_projectName   = args[0]
             v_fileName      = args[1]
@@ -528,7 +528,7 @@ class C_Arbo(object) :
             "# 'make mode' option.  $(O) is meant as a shortcut for $(SPHINXOPTS).\n"\
             "%: Makefile\n"\
             "    @$(SPHINXBUILD) -M $@ \"$(SOURCEDIR)\" \"$(BUILDDIR)\" $(SPHINXOPTS) $(O)\n\n"\
-            "# reconstruction de la branch 'gh-pages' et mise a jour du depot distant\n"\
+            "# reconstruction de la branch 'gh-pages' et mise à jour du dépôt distant\n"\
             "buildandcommithtml: html\n\n"\
             "    cd $(BUILDDIR)/html; git add . ; git commit -m \rebuilt docs\"; git push origin gh-pages\n"
                             )
@@ -562,7 +562,7 @@ class C_Arbo(object) :
 
     def f_testFunc(self, *args, **kwargs ) :
         """ Cette méthode permet de tester méthode pour éviter de devoir modifier la
-            séquence exécutée dans le 'main. Elle s'active avec l'option -t ou --test.
+            séquence exécutée dans le 'main’. Elle s'active avec l'option -t ou --test.
         """
         print( "\n\t\t ## f_testFunc ##\n" )
         print("args\t: ",args)
@@ -589,7 +589,7 @@ def main() :
                         help="active toutes les options d'arboProject")
 
     parser.add_argument( "-t", "--test", action='store_true',
-                        help="permet de tester une methode")
+                        help="permet de tester une méthode")
     
     args = parser.parse_args()
     
@@ -611,8 +611,9 @@ def main() :
     if args.test :
         i_arbo.f_testFunc("" )
         
-    input("\n\t\tfin de creation de l'arboressence")
+    input("\n\t\tfin de création de l'arborescence")
 
 if __name__ == '__main__':
     main()
             
+
