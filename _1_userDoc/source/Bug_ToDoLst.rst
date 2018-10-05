@@ -45,10 +45,48 @@ Bug identifiés
 ToDo-list
 =========
 
-    :Date de saisie:        
+    :Date de saisie:        181005
     :Date de traitemant:    
     :Cible:                 [userDoc, modelisation, software, PCB, autre]
-    :Status:                
-    :Problematique:         
+    :Status:                Done
+    :Problematique:         Changer le template Sphinx
+    :Traitement:            Thème classic ajouter dans "conf.py"
+
+------------------------------------------------------------------------------------------
+
+ToDo-list
+=========
+
+    :Date de saisie:        181005
+    :Date de traitemant:    
+    :Cible:                 [userDoc, modelisation, software, PCB, autre]
+    :Status:                None
+    :Problematique:         Ajouter un vrai mode d'emploi sur l'utilisation du logiciel et de ses
+                            options.
     :Traitement:            
+
+------------------------------------------------------------------------------------------
+
+ToDo-list
+=========
+
+    :Date de saisie:        181005
+    :Date de traitemant:    
+    :Cible:                 [userDoc, modelisation, software, PCB, autre]
+    :Status:                None
+    :Problematique:         Documenter le fichier de configuration JSON
+    :Traitement:            
+
+------------------------------------------------------------------------------------------
+
+ToDo-list
+=========
+
+    :Date de saisie:        181005
+    :Date de traitemant:    
+    :Cible:                 [userDoc, modelisation, software, PCB, autre]
+    :Status:                None
+    :Problematique:         Proposer une version exécutable de l'appli
+    :Traitement:            
+
 
