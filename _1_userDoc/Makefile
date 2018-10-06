@@ -22,4 +22,4 @@ help:
 # reconstruction de la branch "gh-pages" et mise a jour du depot distant
 buildandcommithtml: html
 
-    cd $(BUILDDIR)/html; git add . ; git commit -m "rebuilt docs"; git push origin gh-pages
+cd $(BUILDDIR)/html; git add . ; git commit -m "rebuilt docs"; git push origin gh-pages
