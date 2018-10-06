@@ -2,7 +2,7 @@
 
 pushd %~dp0
 
-REM Command file for Sphinx documentation
+:: Command file for Sphinx documentation
 
 if "%SPHINXBUILD%" == "" (
 	set SPHINXBUILD=python -msphinx
@@ -28,16 +28,42 @@ if errorlevel 9009 (
 
 %SPHINXBUILD% -M %1 %SOURCEDIR% %BUILDDIR% %SPHINXOPTS%
 
-rem reconstruction de la branch "gh-pages" et mise a jour du depot distant
-cd %BUILDDIR%\html
-git add .
-git commit -m "rebuilt docs"
-git push origin gh-pages
+:: recupération de la branch active dans la variable : "v_branch"
+for /f %%i in ('git symbolic-ref HEAD --short') do set v_branch=%%i
 
-goto end
+if %v_branch% == master (
+    echo.
+    echo ************************************
+    echo.
+    echo branch : %v_branch%.
+    echo Envoie de le doc doc vers gh-pages
+    echo.
+    echo ************************************
+    echo.
+
+    :: reconstruction de la branch "gh-pages" et mise a jour du depot distant
+    cd %BUILDDIR%\html
+    git add .
+    git commit -m "rebuilt docs"
+    git push origin gh-pages
+
+    goto end
+) else (
+    echo.
+    echo ************************************
+    echo.
+    echo Branch : %v_branch%
+    echo La doc reste en local
+    echo.
+    echo ************************************
+    echo.
+  
+    goto end
+)
 
 :help
 %SPHINXBUILD% -M help %SOURCEDIR% %BUILDDIR% %SPHINXOPTS%
 
 :end
 popd
+
