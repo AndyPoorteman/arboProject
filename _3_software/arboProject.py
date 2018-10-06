@@ -96,8 +96,8 @@ class C_Arbo(object) :
         self._v_verbose     = False
         
         self._v_projectName = ""
-        self._v_author      = "Poltergeist42"
-        
+        self._v_author      = ""
+        self._v_authorSite  = ""
         
         ## Extraction des différents dictionnaires depuis le fichiers 'defArbo.json'
         with open("defArbo.json", 'r', encoding = "utf-8") as f :
@@ -108,6 +108,10 @@ class C_Arbo(object) :
         self._d_gitCFG              = self._d_defArboJson["_d_gitCFG"]
         self._d_txtFileToCreate     = self._d_defArboJson["_d_txtFileToCreate"]
         self._d_arboDir             = self._d_defArboJson["_d_arboDir"]
+        self._d_credit              = self._d_defArboJson["_d_credit"]
+
+        self.f_setAuthor()
+        self.f_setAuthorSite()
 
 ####
 
@@ -128,19 +132,39 @@ class C_Arbo(object) :
         
 ####
 
-    def f_setAuthor( self, v_author) :
+    def f_setAuthor( self, v_author=None) :
         """ Permet de définir un Auteur pour le projet. Par défaut cette valeur est fixée
             à 'Poltergeist42'
         """
-        self._v_author = v_author
+        if not v_author:
+            self._v_author = self._d_credit["v_author"]
+        else:
+            self._v_author = v_author
         
 ####
 
+    def f_setAuthorSite( self, v_authorSite=None) :
+        """ Permet de définir un Auteur pour le projet. Par défaut cette valeur est fixée
+            à 'Poltergeist42'
+        """
+        if not v_authorSite:
+            self._v_authorSite = self._d_credit["v_authorSite"]
+        else:
+            self._v_authorSite = v_authorSite
+        
+####
     def f_getAuthor (self ) :
         """ Retourne le nom contenu par '_v_author'.
             Par défaut se nom est 'Poltergeist42'
         """
         return self._v_author
+####
+
+    def f_getAuthorSite (self ) :
+        """ Retourne le nom contenu par '_v_author'.
+            Par défaut se nom est 'Poltergeist42'
+        """
+        return self._v_authorSite
 ####
 
     def f_getArboDir( self ) :
@@ -249,12 +273,19 @@ class C_Arbo(object) :
             
         v_projectName   = self.f_getProjectName()
         t_exeptArgs     = args
+
+        v_author    = self.f_getAuthor()
+        v_authorSite    = self.f_getAuthorSite()
+
+
         for k in self._d_txtFileToCreate.keys() :
             
             v_exec = f"cf.f_create{k}"
             v_fqfn, v_txtData = eval( v_exec )(   self.f_getProjectName(),
                                     self._d_txtFileToCreate[k]["v_fileName"],
-                                    self._d_txtFileToCreate[k]["path"][0]
+                                    self._d_txtFileToCreate[k]["path"][0],
+                                    v_author,
+                                    v_authorSite
                                 )
             v_fqfn = os.path.normpath( f"{self.v_localDir}{v_fqfn}" )
             self.f_wFile( v_fqfn, v_txtData )
@@ -364,9 +395,10 @@ class C_Arbo(object) :
                 print("** Début d'initialisation de Sphinx **\n")
                 
             os.chdir(self.v_localDir+self._d_sphinxCFG["sphinx"]["path"][0])
-            os.system( "sphinx-quickstart -q -p {} -a Poltergeist42 "\
+            os.system( "sphinx-quickstart -q -p {} -a {} "\
                         "--sep -l fr --ext-autodoc --ext-githubpages "\
-                        "--no-makefile --no-batchfile".format( self.f_getProjectName() )
+                        "--no-makefile --no-batchfile".format(  self.f_getProjectName(),
+                                                                self.f_getAuthor())
                         )
             v_fqfn, v_txtData = self.f_createMakeBat(   self.f_getProjectName(),
                                     self._d_sphinxCFG["makeBat"]["v_fileName"],

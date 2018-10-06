@@ -9,7 +9,7 @@ Infos
    :Projet:             arboProject
    :Nom du fichier:     createFile.py
    :Auteur:            `Poltergeist42 <https://github.com/poltergeist42>`_
-   :Version:            20180901
+   :Version:            20181006
 
 ####
 
@@ -65,18 +65,22 @@ def f_createREADME(*args, **kwargs) :
         v_projectName   = args[0]
         v_fileName      = args[1]
         v_filePath      = args[2]
+        v_author        = args[3]
+        v_authorSite    = args[4]
         
     v_fqfn = f"{v_filePath}/{v_fileName}"
     v_txtData = (
         "======================={}\n".format("="*len(v_projectName))+
         "Informations générales {}\n".format(v_projectName)+
         "======================={}\n\n".format("="*len(v_projectName))+
-        ":Auteur:            `Poltergeist42 <https://github.com/poltergeist42>`_\n"\
-        ":Projet:             {}\n".format(v_projectName)+
-        ":dépôt GitHub:       \n"\
-        ":documentation:      \n"\
-        ":Licence:            CC BY-NC-SA 4.0\n"\
-        ":Liens:              https://creativecommons.org/licenses/by-nc-sa/4.0/\n\n"\
+        ":Auteur:               {}\n".format(v_author)+
+        ":Site_Web:             {}\n".format(v_authorSite)+
+        ":Projet:               {}\n".format(v_projectName)+
+        ":Version:              \n"\
+        ":dépôt GitHub:         \n"\
+        ":documentation:        \n"\
+        ":Licence:              CC BY-NC-SA 4.0\n"\
+        ":Liens:                https://creativecommons.org/licenses/by-nc-sa/4.0/\n\n"\
         "Description\n"\
         "===========\n\n"\
         " Saisir ici une brève description du projet\n\n"\

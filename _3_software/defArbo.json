@@ -255,6 +255,12 @@
                "/project"
             ],
             "alterPath" : []
+    },
+    
+    
+    "_d_credit" : {
+            "v_author" : "Poltergeist42",
+            "v_authorSite" : "https://github.com/poltergeist42"
     }
 }
 
