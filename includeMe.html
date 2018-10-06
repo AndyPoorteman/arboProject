@@ -56,13 +56,15 @@
 </tr>
 <tr class="field-even field"><th class="field-name">Projet:</th><td class="field-body">ArboProject</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">dépôt GitHub:</th><td class="field-body"><a class="reference external" href="https://github.com/poltergeist42/arboProject">https://github.com/poltergeist42/arboProject</a></td>
+<tr class="field-odd field"><th class="field-name">Version:</th><td class="field-body">20181006</td>
 </tr>
-<tr class="field-even field"><th class="field-name">documentation:</th><td class="field-body"><a class="reference external" href="https://poltergeist42.github.io/arboProject/">https://poltergeist42.github.io/arboProject/</a></td>
+<tr class="field-even field"><th class="field-name">dépôt GitHub:</th><td class="field-body"><a class="reference external" href="https://github.com/poltergeist42/arboProject">https://github.com/poltergeist42/arboProject</a></td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Licence:</th><td class="field-body">CC BY-NC-SA 4.0</td>
+<tr class="field-odd field"><th class="field-name">documentation:</th><td class="field-body"><a class="reference external" href="https://poltergeist42.github.io/arboProject/">https://poltergeist42.github.io/arboProject/</a></td>
 </tr>
-<tr class="field-even field"><th class="field-name">Liens:</th><td class="field-body"><a class="reference external" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">https://creativecommons.org/licenses/by-nc-sa/4.0/</a></td>
+<tr class="field-even field"><th class="field-name">Licence:</th><td class="field-body">CC BY-NC-SA 4.0</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Liens:</th><td class="field-body"><a class="reference external" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">https://creativecommons.org/licenses/by-nc-sa/4.0/</a></td>
 </tr>
 </tbody>
 </table>
@@ -74,14 +76,15 @@
 chaque nouveau projet. Ainsi que l’ensemble des fichiers qui y sont rattachés. Il permet
 également d’initialiser le dépôt Git et l’outil de documentation Sphinx.</div></blockquote>
 </div>
+<hr class="docutils" />
 <div class="section" id="arborescence-du-projet">
 <h2>Arborescence du projet<a class="headerlink" href="#arborescence-du-projet" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Pour aider à la compréhension de mon organisation, voici un bref descriptif de
 l’arborescence de ce projet. Cette arborescence est à reproduire si vous récupérez ce
 dépôt depuis GitHub.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openFile</span>               <span class="c1"># Dossier racine du projet (non versionner)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ProjectDir_Name</span>        <span class="c1"># Dossier racine du projet (non versionner)</span>
 <span class="o">|</span>
-<span class="o">+--</span><span class="n">project</span>             <span class="c1"># (branch master) contient l&#39;ensemble du projet en lui même</span>
+<span class="o">+--</span><span class="n">project</span>             <span class="c1"># (Branch master) contient l&#39;ensemble du projet en lui même</span>
 <span class="o">|</span>  <span class="o">|</span>
 <span class="o">|</span>  <span class="o">+--</span><span class="n">_1_userDoc</span>       <span class="c1"># Contiens toute la documentation relative au projet</span>
 <span class="o">|</span>  <span class="o">|</span>   <span class="o">|</span>
@@ -91,13 +94,31 @@ dépôt depuis GitHub.</p>
 <span class="o">|</span>  <span class="o">|</span>
 <span class="o">|</span>  <span class="o">+--</span><span class="n">_3_software</span>      <span class="c1"># Contiens toute la partie programmation du projet</span>
 <span class="o">|</span>  <span class="o">|</span>
-<span class="o">|</span>  \<span class="o">--</span><span class="n">_4_PCB</span>           <span class="c1"># Contient toutes les parties des circuits imprimés (routage,</span>
-<span class="o">|</span>                      <span class="c1"># implantation, typon, fichier de perçage, etc.</span>
+<span class="o">|</span>  <span class="o">+--</span><span class="n">_4_PCB</span>           <span class="c1"># Contient toutes les parties des circuits imprimés (routage,</span>
+<span class="o">|</span>  <span class="o">|</span>                   <span class="c1"># Implantation, typon, fichier de perçage, etc.)</span>
+<span class="o">|</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="o">+--</span><span class="n">_5_techDoc</span>       <span class="c1"># Contiens toutes les documentations techniques des différents composants</span>
+<span class="o">|</span>  <span class="o">|</span>                   <span class="c1"># ou éléments qui constituent le projet. Ces éléments sont identifiés</span>
+<span class="o">|</span>  <span class="o">|</span>                   <span class="c1"># par un liens Web dans la documentation. Ce dossier n&#39;est pas &#39;poussé&#39;</span>
+<span class="o">|</span>  <span class="o">|</span>                   <span class="c1"># dans le dépôt distant (.gitignore).</span>
+<span class="o">|</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="o">+--</span><span class="n">_6_research</span>      <span class="c1"># Regroupe toutes les recherches relatives à l&#39;élaboration ou au</span>
+<span class="o">|</span>  <span class="o">|</span>                   <span class="c1"># développement du projet. Ces éléments sont identifiés</span>
+<span class="o">|</span>  <span class="o">|</span>                   <span class="c1"># par un liens Web dans la documentation. Ce dossier n&#39;est pas &#39;poussé&#39;</span>
+<span class="o">|</span>  <span class="o">|</span>                   <span class="c1"># dans le dépôt distant (.gitignore).</span>
+<span class="o">|</span>  <span class="o">|</span>
+<span class="o">|</span>  \<span class="o">--</span><span class="n">_7_rushes</span>        <span class="c1"># Contient tous les éléments qui seront potentiellement intégrés dans la</span>
+<span class="o">|</span>                      <span class="c1"># doc ou dans le projet. Ce dossier n&#39;est pas &#39;poussé&#39; dans le dépôt</span>
+<span class="o">|</span>                      <span class="c1"># distant (.gitignore).</span>
 <span class="o">|</span>
-\<span class="o">--</span><span class="n">webDoc</span>              <span class="c1"># Dossier racine de la documentation qui doit être publiée</span>
-   <span class="o">|</span>
-   \<span class="o">--</span><span class="n">html</span>             <span class="c1"># (branch gh-pages) C&#39;est dans ce dossier que Sphinx vat</span>
-                       <span class="c1"># générer la documentation a publié sur internet</span>
+<span class="o">+--</span><span class="n">webDoc</span>              <span class="c1"># Dossier racine de la documentation qui doit être publiée</span>
+<span class="o">|</span>  <span class="o">|</span>
+<span class="o">|</span>  \<span class="o">--</span><span class="n">html</span>             <span class="c1"># (Branch gh-pages) C&#39;est dans ce dossier que Sphinx va</span>
+<span class="o">|</span>                      <span class="c1"># générer la documentation a publié sur internet</span>
+<span class="o">|</span>
+\<span class="o">--</span><span class="n">trash</span>               <span class="c1"># Se dossier sert à retirer des éléments du projet sans les</span>
+                       <span class="c1"># supprimé réélement. Ce dossier n&#39;est pas pris en compte par</span>
+                       <span class="c1"># GIT ou par GitHub</span>
 </pre></div>
 </div>
 </div>
