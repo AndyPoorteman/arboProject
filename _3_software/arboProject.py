@@ -9,7 +9,7 @@ Infos
    :Projet:             arboProject
    :Nom du fichier:     arboProject.py
    :Auteur:            `Poltergeist42 <https://github.com/poltergeist42>`_
-   :Version:            20180901
+   :Version:            20181006
 
 ####
 
@@ -439,7 +439,7 @@ class C_Arbo(object) :
     def f_createMakeBat(self, *args, **kwargs) :
         """ Retourne les informations pour la création du fichiers 'make.bat'.
             Si le chemin de destination est différent du dossier par défaut
-            ('..\..\webDoc\'), il faut passer un quatrième argument sous la forme d'une
+            ('..\\..\\webDoc\\'), il faut passer un quatrième argument sous la forme d'une
             chaine de caractère représentant le chemin relatif vers le nouveau dossier de
             destination.
         
@@ -459,7 +459,7 @@ class C_Arbo(object) :
         v_txtData = (
             "@ECHO OFF\n\n"\
             "pushd %~dp0\n\n"\
-            "REM Command file for Sphinx documentation\n\n"\
+            ":: Command file for Sphinx documentation\n\n"\
             "if \"%SPHINXBUILD%\" == \"\" (\n"\
             "    set SPHINXBUILD=python -msphinx\n"\
             ")\n"
@@ -480,14 +480,39 @@ class C_Arbo(object) :
             "    exit /b 1\n"\
             ")\n\n"\
             "%SPHINXBUILD% -M %1 %SOURCEDIR% %BUILDDIR% %SPHINXOPTS%\n"\
-            "rem reconstruction de la branch \"gh-pages\" et mise à jour du dépôt distant\n"\
-            "cd %BUILDDIR%\\html\n"\
-            "git add .\n"\
-            "git commit -m \"rebuilt docs\"\n"\
-            "git push origin gh-pages\n\n"\
-            "goto end\n\n"\
-            ":help\n"\
-            "%SPHINXBUILD% -M help %SOURCEDIR% %BUILDDIR% %SPHINXOPTS%\n\n"\
+            "\n\n"\
+            ":: recupération de la branch active dans la variable : \"v_branch\"\n"\
+            "for /f %%i in ('git symbolic-ref HEAD --short') do set v_branch=%%i\n"\
+            "\n\n"\
+            "if %v_branch% == master (\n"\
+            "    echo.\n"\
+            "    echo ************************************\n"\
+            "    echo.\n"\
+            "    echo branch : %v_branch%.\n"\
+            "    echo Envoie de la doc vers gh-pages\n"\
+            "    echo.\n"\
+            "    echo ************************************\n"\
+            "    echo.\n"\
+            "    \n\n"\
+            "    :: reconstruction de la branch \"gh-pages\" et mise a jour du depot distant\n"\
+            "    cd %BUILDDIR%\html\n"\
+            "    git add .\n"\
+            "    git commit -m \"rebuilt docs\"\n"\
+            "    git push origin gh-pages\n"\
+            "    \n\n"\
+            "    goto end\n"\
+            ") else (\n"\
+            "    echo.\n"\
+            "    echo ************************************\n"\
+            "    echo.\n"\
+            "    echo Branch : %v_branch%\n"\
+            "    echo La doc reste en local\n"\
+            "    echo.\n"\
+            "    echo ************************************\n"\
+            "    echo.\n"\
+            "    \n\n"\
+            "    goto end\n"\
+            ")\n\n"\
             ":end\n"\
             "popd\n"
                     )
