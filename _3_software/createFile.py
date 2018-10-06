@@ -70,7 +70,7 @@ def f_createREADME(*args, **kwargs) :
         v_licence       = args[5]
         v_licenceLink   = args[6]
         
-    v_fqfn = f"{v_filePath}/{v_fileName}"
+    v_fqfn = "{}/{}".format(v_filePath, v_fileName)
     v_txtData = (
         "======================={}\n".format("="*len(v_projectName))+
         "Informations générales {}\n".format(v_projectName)+
@@ -144,7 +144,7 @@ def f_createInit(*args, **kwargs) :
         v_fileName      = args[1]
         v_filePath      = args[2]
         
-    v_fqfn = f"{v_filePath}/{v_fileName}"
+    v_fqfn = "{}/{}".format(v_filePath, v_fileName)
     v_txtData = False
     return  v_fqfn, v_txtData
 

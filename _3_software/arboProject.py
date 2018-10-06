@@ -200,7 +200,7 @@ class C_Arbo(object) :
             
                 ## Verbose
                 if self._v_verbose :
-                    print( f"\t* Création du dossier : {self._d_arboDir[k]['path'][0]}")
+                    print( "\t* Création du dossier : {}".format(self._d_arboDir[k]['path'][0]))
                     
                 os.makedirs(os.path.normpath(v_target), mode=0o777, exist_ok=True)
                     # os.makedirs() : Permet de créer le répertoire indiquer par
@@ -282,7 +282,7 @@ class C_Arbo(object) :
 
         for k in self._d_txtFileToCreate.keys() :
             
-            v_exec = f"cf.f_create{k}"
+            v_exec = "cf.f_create{}".format(k)
             v_fqfn, v_txtData = eval( v_exec )(   self.f_getProjectName(),
                                     self._d_txtFileToCreate[k]["v_fileName"],
                                     self._d_txtFileToCreate[k]["path"][0],
@@ -291,7 +291,7 @@ class C_Arbo(object) :
                                     v_licence,
                                     v_licenceLink
                                 )
-            v_fqfn = os.path.normpath( f"{self.v_localDir}{v_fqfn}" )
+            v_fqfn = os.path.normpath( "{}{}".format(self.v_localDir, v_fqfn) )
             self.f_wFile( v_fqfn, v_txtData )
                             
         ## Verbose
@@ -310,7 +310,7 @@ class C_Arbo(object) :
 
             ## Verbose
             if self._v_verbose :
-                print( f"\t* Création du fichier : '{v_fileName}'")
+                print( "\t* Création du fichier : '{}'".format(v_fileName))
 
 ####    
 
@@ -357,14 +357,14 @@ class C_Arbo(object) :
                         ## Verbose
                         if self._v_verbose :
                             print( 
-                                f"\t* copie du fichier : {fileName}"\
-                                f" dans le répertoire : {v_path[id]}")
+                                "\t* copie du fichier : {}".format(fileName)+
+                                " dans le répertoire : {}".format(v_path[id]))
                             
                     except shutil.Error as e:
-                        print(f"Error: {e}")
+                        print("Error: {}".format(e))
                     # eg. source or destination doesn't exist
                     except IOError as e:
-                        print(f"Error: {e.strerror}")
+                        print("Error: {}".format(e.strerror))
                         
         ## Verbose
         if self._v_verbose :
@@ -408,7 +408,7 @@ class C_Arbo(object) :
                                     self._d_sphinxCFG["makeBat"]["v_fileName"],
                                     self._d_sphinxCFG["makeBat"]["path"][0]
                                 )
-            v_fqfn = os.path.normpath( f"{self.v_localDir}{v_fqfn}" )
+            v_fqfn = os.path.normpath( "{}{}".format(self.v_localDir, v_fqfn) )
             self.f_wFile( v_fqfn, v_txtData )
             
             v_fqfn, v_txtData = self.f_createMakefile(   self.f_getProjectName(),
@@ -416,7 +416,7 @@ class C_Arbo(object) :
                                     self._d_sphinxCFG["Makefile"]["path"][0]
                                 )
                                 
-            v_fqfn = os.path.normpath( f"{self.v_localDir}{v_fqfn}" )
+            v_fqfn = os.path.normpath( "{}{}".format(self.v_localDir, v_fqfn) )
             self.f_wFile( v_fqfn, v_txtData )
 
             self.f_setChangeConf()
@@ -443,8 +443,8 @@ class C_Arbo(object) :
         
         if self._v_sphinxInit :
             v_path = self.v_localDir + self._d_sphinxCFG["conf"]["path"][0]
-            v_tempFile = f"{v_path}/tempF"
-            v_confFile = f"{v_path}/{self._d_sphinxCFG['conf']['v_fileName']}"
+            v_tempFile = "{}/tempF".format(v_path)
+            v_confFile = "{}/{}".format(v_path, self._d_sphinxCFG['conf']['v_fileName'])
             with open(v_tempFile, 'a', encoding = "utf-8") as tf:
                 with open(v_confFile, 'r', encoding = "utf-8") as rm :
                     for l in rm :
@@ -453,7 +453,7 @@ class C_Arbo(object) :
                         elif l[:-1] == "# import sys" :
                             tf.write("import sys\n")
                         elif l[:-1] == "# sys.path.insert(0, os.path.abspath('.'))" :
-                            tf.write(f"sys.path.insert(0, os.path.abspath(\"{v_relativPath}\"))\n")
+                            tf.write("sys.path.insert(0, os.path.abspath(\"{}\"))\n".format(v_relativPath))
                         elif l[:-1] == "exclude_patterns = []" :
                             tf.write("exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']\n")
                         elif l[:-1] == "html_theme = 'alabaster'" :
@@ -491,7 +491,7 @@ class C_Arbo(object) :
             else :
                 v_buildir   = "..\\..\\webDoc"
             
-        v_fqfn = f"{v_filePath}/{v_fileName}"
+        v_fqfn = "{}/{}".format(v_filePath, v_fileName)
         v_txtData = (
             "@ECHO OFF\n\n"\
             "pushd %~dp0\n\n"\
@@ -574,7 +574,7 @@ class C_Arbo(object) :
             else :
                 v_buildir = "../../webDoc"
             
-        v_fqfn = f"{v_filePath}/{v_fileName}"
+        v_fqfn = "{}/{}".format(v_filePath, v_fileName)
         v_txtData = (
             "# Minimal makefile for Sphinx documentation\n\n"\
             "# You can set these variables from the command line.\n"\
@@ -582,7 +582,7 @@ class C_Arbo(object) :
             "SPHINXBUILD     = python -msphinx\n"\
             "SPHINXPROJ      = {}\n".format( v_projectName ) +
             "SOURCEDIR       = .\n"\
-            f"BUILDDIR        = {v_buildir}\n\n"\
+            "BUILDDIR        = {}\n\n".format(v_buildir)+
             "# Put it first so that 'make' without argument is like 'make help'.\n"\
             "help:\n"\
             "    @$(SPHINXBUILD) -M help \"$(SOURCEDIR)\" \"$(BUILDDIR)\" $(SPHINXOPTS) $(O)\n\n"\
