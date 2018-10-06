@@ -274,8 +274,10 @@ class C_Arbo(object) :
         v_projectName   = self.f_getProjectName()
         t_exeptArgs     = args
 
-        v_author    = self.f_getAuthor()
+        v_author        = self.f_getAuthor()
         v_authorSite    = self.f_getAuthorSite()
+        v_licence       = self._d_credit["v_licence"]
+        v_licenceLink   = self._d_credit["v_licenceLink"]
 
 
         for k in self._d_txtFileToCreate.keys() :
@@ -285,7 +287,9 @@ class C_Arbo(object) :
                                     self._d_txtFileToCreate[k]["v_fileName"],
                                     self._d_txtFileToCreate[k]["path"][0],
                                     v_author,
-                                    v_authorSite
+                                    v_authorSite,
+                                    v_licence,
+                                    v_licenceLink
                                 )
             v_fqfn = os.path.normpath( f"{self.v_localDir}{v_fqfn}" )
             self.f_wFile( v_fqfn, v_txtData )

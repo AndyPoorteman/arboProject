@@ -67,6 +67,8 @@ def f_createREADME(*args, **kwargs) :
         v_filePath      = args[2]
         v_author        = args[3]
         v_authorSite    = args[4]
+        v_licence       = args[5]
+        v_licenceLink   = args[6]
         
     v_fqfn = f"{v_filePath}/{v_fileName}"
     v_txtData = (
@@ -79,11 +81,13 @@ def f_createREADME(*args, **kwargs) :
         ":Version:              \n"\
         ":dépôt GitHub:         \n"\
         ":documentation:        \n"\
-        ":Licence:              CC BY-NC-SA 4.0\n"\
-        ":Liens:                https://creativecommons.org/licenses/by-nc-sa/4.0/\n\n"\
+        ":Licence:              {}\n".format(v_licence)+
+        ":Liens:                {}\n\n".format(v_licenceLink)+
+        "####\n\n"\
         "Description\n"\
         "===========\n\n"\
         " Saisir ici une brève description du projet\n\n"\
+        "####\n\n"\
         "Arborescence du projet\n"\
         "======================\n\n"\
         "Pour aider à la compréhension de mon organisation,"\

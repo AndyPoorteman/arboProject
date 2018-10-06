@@ -260,7 +260,9 @@
     
     "_d_credit" : {
             "v_author" : "Poltergeist42",
-            "v_authorSite" : "https://github.com/poltergeist42"
+            "v_authorSite" : "https://github.com/poltergeist42",
+            "v_licence" : "CC BY-NC-SA 4.0",
+            "v_licenceLink" : "https://creativecommons.org/licenses/by-nc-sa/4.0/"
     }
 }
 
