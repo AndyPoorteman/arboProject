@@ -11,6 +11,7 @@ _5_*/
 _6_*/
 _7_*/
 *_v/
+__pycache__
 
 ## [ listes des extentions a ignorer ]
 *.FCStd1
